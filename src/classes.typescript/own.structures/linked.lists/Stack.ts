@@ -3,9 +3,9 @@ import { Node } from "./Node";
 export class Stack<T> {
     
     private top: Node<T> | null;
-    private capacity: number | null = 0;
+    private capacity: number = 0;
 
-    constructor(){
+    constructor() {
         this.top = null;
     }
 
@@ -34,6 +34,11 @@ export class Stack<T> {
         const node: Node<T> = new Node(data);
         node.setNextNode(this.top);
         this.top = node;
+
+        if (this.capacity === null) {
+            this.capacity = 0;
+        }
+    
         this.capacity++;
     }
 
@@ -48,6 +53,11 @@ export class Stack<T> {
     
         const data: T = this.top!.getData(); 
         this.top = this.top!.getNextNode(); 
+
+        if (this.capacity === null) {
+            this.capacity = 0;
+        }
+
         this.capacity--;
     
         return data;
@@ -71,8 +81,23 @@ export class Stack<T> {
     /**
      * @returns capacity attribute of the Stack
      */
-    public getCapacity(): number {
+    public getCapacity(): number | null {
         return this.capacity;
+    }
+
+    /**
+     * @returns the number of elements in the Stack
+     */
+    public size(): number {
+        let count = 0;
+        let currentNode = this.top;
+    
+        while (currentNode !== null) {
+            count++;
+            currentNode = currentNode.getNextNode();
+        }
+    
+        return count;
     }
 
     /**
@@ -105,24 +130,15 @@ export class Stack<T> {
 
     protected clone(): Stack<T> {
         const clonedStack: Stack<T> = new Stack<T>();
-        let topNode: Node<T> | null = null;
-    
-        for (let aux: Node<T> | null = this.top; aux !== null; aux = aux.getNextNode()) {
-            const newNode: Node<T> = new Node<T>(aux.getData());
-    
-            if (clonedStack.isEmpty()) {
-                clonedStack.top = newNode;
-                topNode = newNode;
-            } else {
-                clonedStack.top!.setNextNode(newNode);
-                clonedStack.top = newNode;
-            }
-            clonedStack.size++;
+        let currentNode = this.top;
+
+        while(currentNode !== null){
+            clonedStack.push(currentNode.getData());
+            currentNode = currentNode.getNextNode();
         }
-    
-        clonedStack.top = topNode;
     
         return clonedStack;
     }
+    
 
 }
