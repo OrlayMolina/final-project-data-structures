@@ -3,7 +3,7 @@ export class Node<T> {
     private nextNode: Node<T> | null;
     private data: T;
 
-    constructor(data: T, nextNode?: Node<T>) {
+    constructor(data: T, nextNode?: Node<T> | null) {
         this.data = data;
         this.nextNode = nextNode || null;
     }
@@ -12,7 +12,7 @@ export class Node<T> {
         return this.nextNode;
     }
 
-    public setNextNode(nextNode: Node<T>) : void {
+    public setNextNode(nextNode: Node<T> | null) : void {
         this.nextNode = nextNode;
     }
 
