@@ -12,6 +12,80 @@ export class SimpleList<T> {
     }
 
     /**
+     * Adds a new node with the specified data to the front of the list.
+     * @param {T} data The data to be added to the list.
+     */
+    public putInFront(data: T): void {
+        const newNode: Node<T> = new Node(data);
+        if(this.firstNode){
+            newNode.setNextNode(this.firstNode);
+            this.firstNode = newNode;
+        }else{
+            this.firstNode = newNode;
+            this.lastNode = newNode;
+        }
+        this.size++;
+    }
+
+    /**
+     * Gets the value of the node at the specified index in the list.
+     * @param {number} index The index of the node to retrieve the value from.
+     * @returns {T | null} The value of the node at the specified index, or null if the index is out of range.
+     */
+    public getNodeValueAt(index: number): T | null {
+        if(!this.validIndex(index)){
+            return null;
+        }
+        let currentNode = this.firstNode;
+        for (let i = 0; i < index; i++) {
+            if (currentNode) {
+                currentNode = currentNode.getNextNode();
+            } else {
+                return null;
+            }
+        }
+            return currentNode ? currentNode.getData() : null;
+    }
+
+
+    /**
+     * Adds a new node with the specified data to the end of the list.
+     * @param {T} data The data to be added to the list.
+     */
+    public putAtEnd(data: T): void {
+        const newNode: Node<T> = new Node(data);
+        if(this.lastNode){
+            this.lastNode.setNextNode(newNode);
+            this.lastNode = newNode;
+        }else {
+            this.firstNode = newNode;
+            this.lastNode = newNode;
+        }
+        this.size++;
+    }
+
+    /**
+     * 
+     * @param index 
+     * @returns 
+     */
+    public validIndex(index: number): boolean {
+        return index >= 0 && index < this.size;
+    }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
+
+    public printList(): void {
+        let currentNode = this.firstNode;
+        while(currentNode){
+            console.log(currentNode.getData());
+            currentNode = currentNode.getNextNode();
+        }
+    }
+
+    /**
      * Gets the size of the list.
      * @returns {number} The number of elements in the list.
      */
@@ -56,16 +130,18 @@ export class SimpleList<T> {
      * Provides an iterator for iterating over the elements of the list.
      * @returns {Iterator<T>} An iterator object that allows iteration over the elements of the list.
      */
-    public [Symbol.iterator](){
+    public [Symbol.iterator](): Iterator<T> {
         let current = this.firstNode;
         return {
-            next(){
-                if(current){
+            next(): IteratorResult<T> {
+                if (current) {
                     const value = current.getData();
                     current = current.getNextNode();
-                    return {value, done: false};
+                    return { value, done: false };
+                } else {
+                    return { value: undefined as any, done: true };
                 }
             }
-        }
+        };
     }
 }
