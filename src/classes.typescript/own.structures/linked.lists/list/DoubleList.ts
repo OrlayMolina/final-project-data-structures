@@ -70,6 +70,35 @@ export class DoubleList<T>{
         this.size = 0;
     }
 
+    public getNodeValue(index: number): T | null {
+        let temporalNode: DoubleNode<T> | null = this.getNode(index);
+        let counter: number = 0;
+
+        if(this.validIndex(index)){
+            temporalNode = this.firstNode;
+
+            while(counter < index){
+                temporalNode = temporalNode?.getNextNode() || null;
+                counter++;
+            }
+        }
+
+        if(temporalNode !== null){
+            return temporalNode.getData();
+        }else{
+            return null;     
+        }
+    }
+    
+    /**
+     * 
+     * @param index 
+     * @returns 
+     */
+    public validIndex(index: number): boolean {
+        return index >= 0 && index < this.size;
+    }
+
     public getNode(index: number): DoubleNode<T> | null {
         if(index >= 0 && index >= this.size){
             let node: DoubleNode<T> | null = this.firstNode;
@@ -86,19 +115,76 @@ export class DoubleList<T>{
     }
 
     /**
-     * 
-     * @param index 
-     * @returns 
-     */
-    public validIndex(index: number): boolean {
-        return index >= 0 && index < this.size;
-    }
-
-    /**
      * Check if the Stack is empty
      * @returns true if the Stack is empty, false otherwise
      */
     public isEmpty(): boolean {
         return this.size === 0;
+    }
+
+    /**
+     * Print the List
+     */
+    public printList(): void {
+        let auxNode: DoubleNode<T> | null = this.firstNode;
+        while(auxNode){
+            console.log(auxNode.getData());
+            auxNode = auxNode.getNextNode();
+        }
+        console.log("");
+    }
+
+    /**
+     * Print the List in reverse
+     */
+    public printReverseList(): void {
+        let auxNode: DoubleNode<T> | null = this.lastNode
+        while(auxNode){
+            console.log(auxNode.getData());
+            auxNode = auxNode.getPreviuosNode();
+        }
+        console.log("");
+    }
+
+    public delete(nodeValue: T): T {
+        let node: DoubleNode<T> | null = this.searchNode(nodeValue);
+
+        if(node !== null){
+            const previousNode: DoubleNode<T> | null = node.getPreviuosNode();
+            const nextNode: DoubleNode<T> | null = node.getNextNode();
+
+            if(previousNode === null){
+                this.firstNode = nextNode;
+            }else{
+                previousNode.setNextNode(nextNode);
+            }
+
+            if(nextNode === null){
+                this.lastNode = previousNode;
+            }else {
+                nextNode.setPreviousNode(previousNode)
+            }
+            
+            node = null;
+            this.size--;
+
+            return nodeValue;
+
+        }
+
+        throw new Error("The node was not found");
+    }
+
+    public searchNode(data: T): DoubleNode<T> | null {
+        let auxNode: DoubleNode<T> | null = this.firstNode;
+        while(auxNode !== null){
+            if(auxNode.getData() === data){
+                return auxNode;
+            }
+
+            auxNode = auxNode.getNextNode();
+        }
+
+        return null;
     }
 }
