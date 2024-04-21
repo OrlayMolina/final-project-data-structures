@@ -39,6 +39,62 @@ export class DoubleList<T>{
     }
 
     /**
+     * 
+     * @param index 
+     * @param data 
+     */
+    public add(index: number, data: T): void{
+        if(this.validIndex(index)){
+            if( index === 0){
+                this.putInFront(data);
+            }else {
+                const newNode: DoubleNode<T> = new DoubleNode(data);
+                const currentNode: DoubleNode<T> | null = this.getNode(index);
+
+                newNode.setNextNode(currentNode);
+                newNode.setPreviousNode(currentNode?.getPreviuosNode() || null);
+                currentNode?.getPreviuosNode()?.setNextNode(newNode);
+                currentNode?.setPreviousNode(newNode);
+
+                this.size++;
+            }
+        }
+    }
+
+    /**
+     * method that deletes the DoubleList
+     */
+    public deleteList(): void {
+        this.firstNode = null;
+        this.lastNode = null;
+        this.size = 0;
+    }
+
+    public getNode(index: number): DoubleNode<T> | null {
+        if(index >= 0 && index >= this.size){
+            let node: DoubleNode<T> | null = this.firstNode;
+
+            for(let i = 0; i < index; i++){
+                if (node) {
+                    node = node.getNextNode();
+                }
+            }
+            return node;
+        }
+
+        return null;
+    }
+
+    /**
+     * 
+     * @param index 
+     * @returns 
+     */
+    public validIndex(index: number): boolean {
+        return index >= 0 && index < this.size;
+    }
+
+    /**
      * Check if the Stack is empty
      * @returns true if the Stack is empty, false otherwise
      */

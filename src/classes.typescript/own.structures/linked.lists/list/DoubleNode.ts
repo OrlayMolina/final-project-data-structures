@@ -4,30 +4,34 @@ export class DoubleNode<T> {
     private previousNode: DoubleNode<T> | null;
     private nodeValue: T;
 
-    public constructor(nodeValue: T){
+    public constructor(nodeValue: T, nextNode?: DoubleNode<T> | null, previousNode?: DoubleNode<T> | null){
         this.nodeValue = nodeValue;
-        this.nextNode = null;
-        this.previousNode = null;
+        this.nextNode = nextNode || null;
+        this.previousNode = previousNode || null;
     }
 
     public setNextNode(nextNode: DoubleNode<T> | null): void{
         this.nextNode = nextNode;
     }
 
-    public setPreviousNode(previuosNode: DoubleNode<T> | null): void {
-        this.previousNode = previuosNode;
-    }
-
     public getNextNode(): DoubleNode<T> | null {
         return this.nextNode;
     }
 
-    public getPreviuosNode():DoubleNode<T> | null {
-        return this.previousNode;
-    }
-
     public getData(): T {
         return this.nodeValue;
+    }
+
+    public setData(nodeValue: T): void {
+        this.nodeValue = nodeValue;
+    }
+
+    public setPreviousNode(previuosNode: DoubleNode<T> | null): void {
+        this.previousNode = previuosNode;
+    }
+
+    public getPreviuosNode():DoubleNode<T> | null {
+        return this.previousNode;
     }
 
 }
