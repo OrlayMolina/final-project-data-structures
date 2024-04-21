@@ -85,6 +85,44 @@ export class SimpleList<T> {
         }
     }
 
+    public delete(nodeValue: T): T  {
+        let node: Node<T> | null = this.firstNode;
+        let previousNode: Node<T> | null = null;
+        let nextNode: Node<T> | null = null;
+        let found: boolean = false;
+        
+        while(node !== null){
+            if(node.getData() === nodeValue){
+                found = true;
+                break;
+            }
+            previousNode = node;
+            node = node.getNextNode();
+        }
+
+        if(found){
+            if (node !== null) {
+                nextNode = node.getNextNode();
+                if (previousNode === null) {
+                    this.firstNode = node.getNextNode();
+                } else {
+                    previousNode.setNextNode(nextNode);
+                }
+
+                if (nextNode === null) {
+                    this.lastNode = previousNode;
+                } else {
+                    node.setNextNode(null);
+                }
+
+                node = null;
+                this.size--;
+            }
+            return nodeValue;
+        }
+        throw new Error("Node not found");
+    }
+
     /**
      * Gets the size of the list.
      * @returns {number} The number of elements in the list.
