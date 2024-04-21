@@ -232,6 +232,12 @@ export class DoubleList<T> implements Iterable<T>{
         return null;
     }
 
+    /**
+     * Searches for a node with the specified data in the list.
+     * 
+     * @param data The data to search for in the nodes.
+     * @returns The node containing the data, or null if not found.
+     */
     public searchNode(data: T): DoubleNode<T> | null {
         let auxNode: DoubleNode<T> | null = this.firstNode;
         while(auxNode !== null){
@@ -245,6 +251,12 @@ export class DoubleList<T> implements Iterable<T>{
         return null;
     }
 
+    /**
+     * Modifies the data of a node at the specified index in the list.
+     * 
+     * @param index The index of the node to modify.
+     * @param newdata The new data to assign to the node.
+     */
     public modifyNode(index: number, newdata: T): void{
         if(this.validIndex(index)){
             const node: DoubleNode<T> | null = this.getNode(index);
