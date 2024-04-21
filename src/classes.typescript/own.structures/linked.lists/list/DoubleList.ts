@@ -99,21 +99,6 @@ export class DoubleList<T>{
         return index >= 0 && index < this.size;
     }
 
-    public getNode(index: number): DoubleNode<T> | null {
-        if(index >= 0 && index >= this.size){
-            let node: DoubleNode<T> | null = this.firstNode;
-
-            for(let i = 0; i < index; i++){
-                if (node) {
-                    node = node.getNextNode();
-                }
-            }
-            return node;
-        }
-
-        return null;
-    }
-
     /**
      * Check if the Stack is empty
      * @returns true if the Stack is empty, false otherwise
@@ -173,6 +158,69 @@ export class DoubleList<T>{
         }
 
         throw new Error("The node was not found");
+    }
+
+    /**
+     * Removes and returns the first element from the list.
+     * 
+     * @returns The value of the removed element.
+     * @throws {Error} If the list is empty.
+     */
+    public deleteFirst(): T {
+        if (!this.isEmpty()) {
+            const auxNode: DoubleNode<T> | null = this.firstNode;
+            if (auxNode) {
+                const nodeValue: T = auxNode.getData();
+                this.firstNode = auxNode.getNextNode() || null;
+    
+                if (this.firstNode === null) {
+                    this.lastNode = null;
+                } else {
+                    this.firstNode.setPreviousNode(null);
+                }
+    
+                this.size--;
+                return nodeValue;
+            }
+        }
+    
+        throw new Error("The list is empty");
+    }
+
+    public deleteLast(): T {
+        if (!this.isEmpty()) {
+            if (this.lastNode) {
+                const nodeValue: T = this.lastNode.getData();
+                const previousNode: DoubleNode<T> | null = this.getNode(this.size - 2);
+                this.lastNode = previousNode;
+    
+                if (this.lastNode === null) {
+                    this.firstNode = null;
+                } else {
+                    previousNode?.setNextNode(null);
+                }
+    
+                this.size--;
+                return nodeValue;
+            }
+        }
+    
+        throw new Error("The list is empty");
+    }
+
+    public getNode(index: number): DoubleNode<T> | null {
+        if(index >= 0 && index >= this.size){
+            let node: DoubleNode<T> | null = this.firstNode;
+
+            for(let i = 0; i < index; i++){
+                if (node) {
+                    node = node.getNextNode();
+                }
+            }
+            return node;
+        }
+
+        return null;
     }
 
     public searchNode(data: T): DoubleNode<T> | null {
