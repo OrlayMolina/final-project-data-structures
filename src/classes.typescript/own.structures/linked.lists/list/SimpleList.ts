@@ -1,6 +1,6 @@
 import { Node } from "../Node";
-
-export class SimpleList<T> {
+import { IteratorSimpleList } from "./IteratorSimpleList";
+export class SimpleList<T> implements Iterable<T>{
     private firstNode: Node<T> | null;
     private lastNode: Node<T> | null;
     private size: number;
@@ -9,6 +9,14 @@ export class SimpleList<T> {
         this.size = 0;
         this.firstNode = null;
         this.lastNode = null;
+    }
+
+    /**
+     * Provides an iterator for iterating over the elements of the list.
+     * @returns {Iterator<T>} An iterator object that allows iteration over the elements of the list.
+     */
+    [Symbol.iterator](): Iterator<T> {
+        return new IteratorSimpleList(this.firstNode);
     }
 
     /**
@@ -164,22 +172,4 @@ export class SimpleList<T> {
     }
 
 
-    /**
-     * Provides an iterator for iterating over the elements of the list.
-     * @returns {Iterator<T>} An iterator object that allows iteration over the elements of the list.
-     */
-    public [Symbol.iterator](): Iterator<T> {
-        let current = this.firstNode;
-        return {
-            next(): IteratorResult<T> {
-                if (current) {
-                    const value = current.getData();
-                    current = current.getNextNode();
-                    return { value, done: false };
-                } else {
-                    return { value: undefined as any, done: true };
-                }
-            }
-        };
-    }
 }

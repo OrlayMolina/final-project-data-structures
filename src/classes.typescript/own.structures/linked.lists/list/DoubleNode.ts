@@ -30,7 +30,7 @@ export class DoubleNode<T> {
         this.previousNode = previuosNode;
     }
 
-    public getPreviuosNode():DoubleNode<T> | null {
+    public getPreviousNode():DoubleNode<T> | null {
         return this.previousNode;
     }
 

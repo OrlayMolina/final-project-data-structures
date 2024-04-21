@@ -1,6 +1,7 @@
 import { DoubleNode } from "./DoubleNode";
+import { IteratorDoubleList } from "./IteratorDoubleList";
 
-export class DoubleList<T>{
+export class DoubleList<T> implements Iterable<T>{
     private firstNode: DoubleNode<T> | null;
     private lastNode: DoubleNode<T> | null;
     private size: number;
@@ -9,6 +10,14 @@ export class DoubleList<T>{
         this.firstNode = null;
         this.lastNode = null;
         this.size = 0;
+    }
+
+    /**
+     * Provides an iterator for iterating over the elements of the list.
+     * @returns {Iterator<T>} An iterator object that allows iteration over the elements of the list.
+     */
+    [Symbol.iterator](): Iterator<T> {
+        return new IteratorDoubleList(this.firstNode);
     }
 
     /**
@@ -52,8 +61,8 @@ export class DoubleList<T>{
                 const currentNode: DoubleNode<T> | null = this.getNode(index);
 
                 newNode.setNextNode(currentNode);
-                newNode.setPreviousNode(currentNode?.getPreviuosNode() || null);
-                currentNode?.getPreviuosNode()?.setNextNode(newNode);
+                newNode.setPreviousNode(currentNode?.getPreviousNode() || null);
+                currentNode?.getPreviousNode()?.setNextNode(newNode);
                 currentNode?.setPreviousNode(newNode);
 
                 this.size++;
@@ -126,7 +135,7 @@ export class DoubleList<T>{
         let auxNode: DoubleNode<T> | null = this.lastNode
         while(auxNode){
             console.log(auxNode.getData());
-            auxNode = auxNode.getPreviuosNode();
+            auxNode = auxNode.getPreviousNode();
         }
         console.log("");
     }
@@ -135,7 +144,7 @@ export class DoubleList<T>{
         let node: DoubleNode<T> | null = this.searchNode(nodeValue);
 
         if(node !== null){
-            const previousNode: DoubleNode<T> | null = node.getPreviuosNode();
+            const previousNode: DoubleNode<T> | null = node.getPreviousNode();
             const nextNode: DoubleNode<T> | null = node.getNextNode();
 
             if(previousNode === null){
@@ -235,4 +244,40 @@ export class DoubleList<T>{
 
         return null;
     }
+
+    public modifyNode(index: number, newdata: T): void{
+        if(this.validIndex(index)){
+            const node: DoubleNode<T> | null = this.getNode(index);
+            node?.setData(newdata);
+        }
+    }
+
+    public getNodePosition(data: T): number {
+        let i: number = 0;
+
+        for(let aux: DoubleNode<T> | null = this.firstNode; aux !== null; aux = aux.getNextNode()){
+            if(aux.getData() === data){
+                return i;
+            }
+            i++;
+        }
+
+        return -1;
+    }
+
+    public get(index: number): T | null {
+        if(this.validIndex(index)){
+            const n: DoubleNode<T> | null = this.getNode(index);
+
+            if(n !== null){
+                return n.getData();
+            }
+        }
+
+        return null;
+    }
+
+    
+
+    
 }
