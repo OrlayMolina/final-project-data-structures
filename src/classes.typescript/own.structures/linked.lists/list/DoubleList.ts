@@ -105,7 +105,12 @@ export class DoubleList<T> implements Iterable<T>{
      * @returns 
      */
     public validIndex(index: number): boolean {
-        return index >= 0 && index < this.size;
+
+        if( index >= 0 && index < this.size ) {
+			return true;
+		}
+
+		throw new Error("Index out the bounds of the list");
     }
 
     /**
