@@ -1,10 +1,9 @@
-import { IPerson } from '../interfaces/Person.type';
+import { ISeller } from './../interfaces/Sellers.type';
 import { Chat } from './Chat';
 import { Post } from './Post';
 import { Person } from "./Person";
 import { Request } from './Request';
 import { DoubleList } from "../own.structures/linked.lists/list/DoubleList";
-import { ISeller } from '../interfaces/Sellers.type';
 
 export class Seller extends Person {
     
@@ -15,7 +14,7 @@ export class Seller extends Person {
     private requestReceivedList: DoubleList<Request>;
     private requestSentList: DoubleList<Request>;
 
-    public constructor({name, lastName, ID, address, userName, password}: IPerson){
+    public constructor({name, lastName, ID, address, userName, password}: ISeller){
         super({name, lastName, ID, address, userName, password});
         this.admin = false;
         this.contactList = new DoubleList();
