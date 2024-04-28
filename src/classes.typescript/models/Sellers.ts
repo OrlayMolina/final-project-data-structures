@@ -4,6 +4,7 @@ import { Post } from './Post';
 import { Person } from "./Person";
 import { Request } from './Request';
 import { DoubleList } from "../own.structures/linked.lists/list/DoubleList";
+import { ISeller } from '../interfaces/Sellers.type';
 
 export class Seller extends Person {
     
