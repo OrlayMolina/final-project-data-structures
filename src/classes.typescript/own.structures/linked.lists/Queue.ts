@@ -83,7 +83,7 @@ export class Queue<T> {
     }
 
     /**
-     * 
+     * Copio cualquier cosa
      * @param queue 
      * @returns 
      */
