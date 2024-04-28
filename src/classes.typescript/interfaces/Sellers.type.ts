@@ -2,8 +2,9 @@ import { DoubleList } from "../own.structures/linked.lists/list/DoubleList";
 import { Post } from "../models/Post";
 import { Seller } from "../models/Sellers";
 import { Chat } from "../models/Chat";
-
-
+/**
+ * Defines an interface representing a seller.
+ */
 export interface ISeller{
     admin: boolean;
     postList: DoubleList<Post>;
