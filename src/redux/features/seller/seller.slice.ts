@@ -1,6 +1,6 @@
 import { DoubleList } from './../../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SellerState } from "./Seller.types.state";
+import { SellerState } from "./seller.types.state";
 import { Post } from '../../../classes.typescript/models/Post';
 import { Seller } from '../../../classes.typescript/models/Sellers';
 import { Chat } from '../../../classes.typescript/models/Chat';

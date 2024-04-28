@@ -4,8 +4,9 @@ import { Seller } from "../models/Sellers";
 import { Chat } from "../models/Chat";
 import { Request } from "../models/Request";
 import { IPerson } from "./Person.type";
-
-
+/**
+ * Defines an interface representing a seller.
+ */
 export interface ISeller extends IPerson{
     admin: boolean;
     postList: DoubleList<Post>;
