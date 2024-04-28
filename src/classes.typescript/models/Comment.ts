@@ -1,11 +1,13 @@
 import { Seller } from './Sellers';
+import { IComment } from '../interfaces/Comment.type';
+
 export class Comment {
     
     private seller: Seller;
     private comment: string;
     private date: Date;
 
-    public constructor(seller: Seller, comment: string, date: Date){
+    public constructor({seller, comment, date}:IComment) {
         this.seller = seller;
         this.comment = comment;
         this.date = date;

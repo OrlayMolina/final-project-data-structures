@@ -1,10 +1,11 @@
 import { Seller } from "./Sellers";
+import { ILike } from "../interfaces/Like.type";
 
 export class Like {
     private seller: Seller;
     private date: Date;
 
-    public constructor(seller: Seller, date: Date){
+    public constructor({seller, date}:ILike){
         this.seller = seller;
         this.date = date;
     }

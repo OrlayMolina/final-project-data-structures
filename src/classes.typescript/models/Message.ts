@@ -1,12 +1,12 @@
 import { Seller } from "./Sellers";
-
+import { IMessage } from "../interfaces/Message.type";
 export class Message {
     private seller: Seller;
     private date: Date;
     private content: string;
 
 
-    public constructor(seller: Seller, date: Date, content: string){
+    public constructor({seller, date, content}:IMessage){
         this.seller = seller;
         this.date = date;
         this.content = content;

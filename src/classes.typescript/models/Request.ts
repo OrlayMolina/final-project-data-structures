@@ -1,4 +1,5 @@
 import { Seller } from "./Sellers";
+import { IRequest } from "../interfaces/Request.type";
 
 export class Request {
 
@@ -6,7 +7,7 @@ export class Request {
     private date: Date;
     private accept: boolean;
 
-    public constructor(seller: Seller, date: Date, accept: boolean){
+    public constructor({seller, date, accept}:IRequest) {
         this.seller = seller;
         this.date = date;
         this.accept = accept;
