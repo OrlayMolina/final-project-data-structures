@@ -71,4 +71,19 @@ export class Seller extends Person {
     public setAdmin(admin: boolean): void {
         this.admin = admin;
     }
+
+    /**
+     * Converts the Post object to a JSON object.
+     * @returns JSON representation of the Post object.
+     */
+    public toJSON(): any {
+        return {
+            admin: this.admin,
+            postList: this.postList.toJSON(),
+            contactList: this.contactList.toJSON(),
+            chatList: this.chatList.toJSON(),
+            requestReceivedList: this.requestReceivedList.toJSON(),
+            requestSentList: this.requestSentList.toJSON()
+        }
+    }
 }

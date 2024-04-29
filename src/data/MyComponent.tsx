@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Comment } from '../classes.typescript/models/Comment';
 import { Category } from "../classes.typescript/enum/Category";
@@ -8,7 +8,7 @@ import { setCurrentPost } from "../redux/features/post/post.slice";
 import { DoubleList } from "../classes.typescript/own.structures/linked.lists/list/DoubleList";
 import { Like } from "../classes.typescript/models/Like";
 
-const MyComponent: React.FC = () => {
+export default function MyComponent(): JSX.Element {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,8 +22,9 @@ const MyComponent: React.FC = () => {
             comments: new DoubleList<Comment>(),
             likes: new DoubleList<Like>()
         });
+        const postPayload = post.toJSON(); 
 
-        dispatch(setCurrentPost(post));
+        dispatch(setCurrentPost(postPayload));
     }, [dispatch]);
 
     return (
@@ -32,5 +33,3 @@ const MyComponent: React.FC = () => {
         </div>
     );
 }
-
-export default MyComponent;
