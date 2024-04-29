@@ -49,5 +49,6 @@ const postSlice = createSlice({
 
 export const { setCurrentPost, setPost, addComment, addLike } = postSlice.actions;
 
+export const selectCurrentPost = (state: { post: PostsState }) => state.post.currentPost;
 
 export default postSlice.reducer;
