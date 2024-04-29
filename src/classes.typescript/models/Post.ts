@@ -1,6 +1,7 @@
 import { PostState } from './../enum/PostState';
 import { Category } from "../enum/Category";
 import { Like } from "./Like";
+import { Comment } from './Comment';
 import { DoubleList } from "../own.structures/linked.lists/list/DoubleList";
 import { IPost } from '../interfaces/Post.type';
 
@@ -25,14 +26,14 @@ export class Post {
  * category, price, PostState, comments, and likes.
  */
 public constructor({nameProduct, description, image, 
-        category, price, PostState, comments,
+        category, price, postState, comments,
         likes}: IPost){
             this.nameProduct = nameProduct;
             this.description = description;
             this.image = image;
             this.category = category;
             this.price = price;
-            this.postState = PostState;
+            this.postState = postState;
             this.comments = comments;
             this.likes = likes;
     }
