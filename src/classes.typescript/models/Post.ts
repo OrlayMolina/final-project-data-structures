@@ -10,14 +10,14 @@ import { IPost } from '../interfaces/Post.type';
  */
 export class Post {
 
-    private nameProduct: string;
-    private description: string;
-    private image: string;
-    private category: Category;
-    private price: number;
-    private postState: PostState;
-    private comments: DoubleList<Comment>;
-    private likes: DoubleList<Like>;
+    nameProduct: string;
+    description: string;
+    image: string;
+    category: Category;
+    price: number;
+    postState: PostState;
+    comments: DoubleList<Comment>;
+    likes: DoubleList<Like>;
 
     
     /**

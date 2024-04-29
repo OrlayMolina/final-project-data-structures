@@ -10,16 +10,14 @@ export default function Posts() {
     return (
         <>
             <div className="mt-10 mx-6 md:mx-12 lg:mx-16">
-                <h1 className="text-4xl text-white font-bold">
-                    <span className="px-4 py-1 bg-teal-600 rounded-xl shadow-lg">{post?.getNameProduct()}</span>
-                </h1>
-                <p className="text-2xl my-10">Choose your favorite product.</p>
-
-                <div className='grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-                    {post && <Post key={post.getNameProduct()} post={post as unknown as IPost} />}
+                <h1 className="text-4xl text-teal-600 font-bold mb-5">Welcome to our Store!</h1>
+                <p className="text-2xl text-gray-800 mb-10">Choose your favorite product.</p>
+    
+                <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                    <Post post={post as IPost} />
                 </div>
             </div>
-        
         </>
     )
+    
 }

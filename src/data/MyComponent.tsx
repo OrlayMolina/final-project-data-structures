@@ -15,9 +15,9 @@ export default function MyComponent(): JSX.Element {
         const post: Post = new Post({
             nameProduct: 'Biclycle',
             description: 'This is a Biclyce',
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiMjpjrtY1a1Uo0wwhLSdAuri57pZuJxvU1U9MeXDG-g&s',
+            image: 'bicicleta',
             category: Category.SPORT,
-            price: 950000,
+            price: 3950000,
             postState: PostState.PUBLISHED, // Replace 'postState' with 'PostState'
             comments: new DoubleList<Comment>(),
             likes: new DoubleList<Like>()

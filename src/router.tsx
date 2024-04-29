@@ -1,7 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom';
 import Layout from './views/layout/Layout';
 import Home from './views/components/Home';
-import Posts from './views/components/Posts';
 
 const router = createBrowserRouter([
     {
@@ -11,10 +10,6 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home/>
-            },
-            {
-                path: '/ejemplo',
-                element: <Posts />
             }
         ]
     }
