@@ -4,7 +4,7 @@ import { formatMoney } from '../../../../classes.typescript/helpers/utilities';
 
 export default function Post({ post }: {post: IPost | null}):JSX.Element {
 
-    const [heartColor, setHeartColor] = useState<'white' | 'red'>('white');
+    const [heartColor, setHeartColor] = useState<'none' | 'red'>('none');
 
     if (!post) {
         return <div>Loading...</div>;
@@ -13,7 +13,7 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
     const { nameProduct, price, image } = post;
 
     const handleHeartClick = () => {
-        setHeartColor(heartColor === 'white' ? 'red' : 'white');
+        setHeartColor(heartColor === 'none' ? 'red' : 'none');
     };
 
     return (
