@@ -3,8 +3,9 @@ import { IPost } from '../../../../classes.typescript/interfaces/Post.type';
 import { formatMoney } from '../../../../classes.typescript/helpers/utilities';
 
 export default function Post({ post }: {post: IPost | null}):JSX.Element {
-
+    //Para la creacion de una constante [nombrevariable, metodoModificador]
     const [heartColor, setHeartColor] = useState<'none' | 'red'>('none');
+    
 
     if (!post) {
         return <div>Loading...</div>;
