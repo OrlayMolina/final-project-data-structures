@@ -1,6 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom';
 import Layout from './views/layout/Layout';
-import WallPost from './views/components/WallPost';
+import Home from './views/components/Home';
 
 const router = createBrowserRouter([
     {
@@ -8,8 +8,8 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                path: '/suggestions',
-                element: <WallPost />
+                index: true,
+                element: <Home/>
             }
         ]
     }

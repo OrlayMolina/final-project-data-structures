@@ -294,7 +294,19 @@ export class DoubleList<T> implements Iterable<T>{
         return null;
     }
 
-    
+    /**
+     * Converts the DoubleList object to a JSON object.
+     * @returns JSON representation of the DoubleList object.
+     */
+    public toJSON(): any {
+        let node = this.firstNode;
+        const elements = [];
+        while (node !== null) {
+            elements.push(node.getData());
+            node = node.getNextNode();
+        }
+        return elements;
+    }
 
     
 }

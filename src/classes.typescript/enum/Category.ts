@@ -8,4 +8,5 @@ export enum Category {
     HOME,
     SPORT,
     TECNOLOGY,
+    VOID
 }
