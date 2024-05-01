@@ -25,7 +25,7 @@ const initialState: SellerState = {
     password: ''
 }
 
-const userSlice = createSlice({
+const sellerSlice = createSlice({
     name: 'seller',
     initialState,
     reducers: {
@@ -110,7 +110,7 @@ export const {
     setAddress, 
     setUserName, 
     setPassword, 
-    resetSeller} = userSlice.actions;
+    resetSeller} = sellerSlice.actions;
 
 export const selectSeller = (state: { seller: SellerState} ) => state.seller.currentSeller;
 export const selectModalSeller = (state: { seller: SellerState} ) => state.seller.modalSeller;
@@ -128,4 +128,4 @@ export const selectPasseord = (state: { seller: SellerState} ) => state.seller.p
 export const selectTotalPosts = (state: { seller: SellerState} ) => state.seller.totalPosts;
 export const selectAdmin = (state: { seller: SellerState} ) => state.seller.admin;
 
-export default userSlice.reducer;
+export default sellerSlice.reducer;
