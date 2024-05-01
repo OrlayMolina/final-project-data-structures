@@ -5,6 +5,7 @@ import { Category } from "../classes.typescript/enum/Category";
 import { PostState } from '../classes.typescript/enum/PostState';
 import { Post } from '../classes.typescript/models/Post';
 import { setCurrentPost } from "../redux/features/post/post.slice";
+import { setPostList } from '../redux/features/social.media/social.media.slice';
 import { DoubleList } from "../classes.typescript/own.structures/linked.lists/list/DoubleList";
 import { Like } from "../classes.typescript/models/Like";
 
@@ -17,7 +18,7 @@ export default function Data(): JSX.Element {
             description: 'This is a Biclyce',
             image: 'bicicleta',
             category: Category.SPORT,
-            price: 3950000,
+            price: 395,
             postState: PostState.PUBLISHED, // Replace 'postState' with 'PostState'
             comments: new DoubleList<Comment>(),
             likes: new DoubleList<Like>()
@@ -29,29 +30,59 @@ export default function Data(): JSX.Element {
 
     useEffect(() => {
         const post1: Post = new Post({
-            nameProduct: 'Bicycle 1',
-            description: 'This is Bicycle 1',
-            image: 'bicicleta1',
+            nameProduct: 'Bicycle',
+            description: 'This is Bicycle',
+            image: 'bicicleta',
             category: Category.SPORT,
-            price: 3950000,
+            price: 145,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),
             likes: new DoubleList<Like>()
         });
 
         const post2: Post = new Post({
-            nameProduct: 'Bicycle 2',
-            description: 'This is Bicycle 2',
-            image: 'bicicleta2',
-            category: Category.SPORT,
-            price: 3950000,
+            nameProduct: 'Computer',
+            description: 'This is Computer',
+            image: 'computador',
+            category: Category.TECNOLOGY,
+            price: 278,
+            postState: PostState.PUBLISHED,
+            comments: new DoubleList<Comment>(),
+            likes: new DoubleList<Like>()
+        });
+
+        const post3: Post = new Post({
+            nameProduct: 'JBL Speaker',
+            description: 'This is a JBL Speaker',
+            image: 'jbl',
+            category: Category.TECNOLOGY,
+            price: 96,
+            postState: PostState.PUBLISHED,
+            comments: new DoubleList<Comment>(),
+            likes: new DoubleList<Like>()
+        });
+
+        const post4: Post = new Post({
+            nameProduct: 'Ducati',
+            description: 'This is a Ducati',
+            image: 'ducati',
+            category: Category.TECNOLOGY,
+            price: 3500,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),
             likes: new DoubleList<Like>()
         });
 
         const postList: DoubleList<Post> = new DoubleList<Post>();
-    }, []);
+        postList.putInFront(post1);
+        postList.putInFront(post2);
+        postList.putInFront(post3);
+        postList.putInFront(post4);
+
+        const postListPayload = postList.toJSON();
+
+        dispatch(setPostList(postListPayload));
+    }, [dispatch]);
 
     return (
         <div>

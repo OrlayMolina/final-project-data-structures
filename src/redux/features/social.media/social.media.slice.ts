@@ -30,7 +30,12 @@ const socialMediaSlice = createSlice({
     }
 });
 
-export const { setStatus } = socialMediaSlice.actions;
+export const { 
+    setStatus,
+    setUserLogged,
+    setSellerList,
+    setPostList
+ } = socialMediaSlice.actions;
 
 export const selectStatus = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.status;
 export const selectUserLogged = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.userLogged;
