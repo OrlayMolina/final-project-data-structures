@@ -14,9 +14,9 @@ export class Seller extends Person {
     private requestReceivedList: DoubleList<Request>;
     private requestSentList: DoubleList<Request>;
 
-    public constructor({name, lastName, ID, address, userName, password}: ISeller){
+    public constructor({name, lastName, ID, address, userName, password, admin}: ISeller){
         super({name, lastName, ID, address, userName, password});
-        this.admin = false;
+        this.admin = admin;
         this.contactList = new DoubleList();
         this.chatList = new DoubleList();
         this.requestReceivedList = new DoubleList();
@@ -77,13 +77,16 @@ export class Seller extends Person {
      * @returns JSON representation of the Post object.
      */
     public toJSON(): any {
+        const personJSON = super.toJSON(); // Serializa las propiedades de Person
+    
         return {
+            ...personJSON, // Incluye las propiedades de Person en el objeto JSON final
             admin: this.admin,
             postList: this.postList.toJSON(),
             contactList: this.contactList.toJSON(),
             chatList: this.chatList.toJSON(),
             requestReceivedList: this.requestReceivedList.toJSON(),
             requestSentList: this.requestSentList.toJSON()
-        }
+        };
     }
 }

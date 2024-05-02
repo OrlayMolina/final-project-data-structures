@@ -111,4 +111,15 @@ export abstract class Person {
     public setPassword(password: string): void {
         this.password = password;
     }
+
+    public toJSON(): any {
+        return {
+            name: this.name,
+            lastName: this.lastName,
+            ID: this.ID,
+            address: this.address,
+            userName: this.userName,
+            password: this.password
+        };
+    }
 }

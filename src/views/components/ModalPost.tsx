@@ -14,16 +14,20 @@ export default function ModalPost() {
     const [edition, setEdition] = useState(false);
 
     const changeModal = () => {
+        console.log("modal");
         const newState = !modal;
+        console.log(newState)
         dispatch(setModalSeller(newState));
     }
     return (
+        
         <div className="md:flex gap-10">
             <div className="md:w-1/3">
 
                 <img 
                     src={`/img/${image}.JPG`} 
                     alt={`Imagen producto ${nameProduct}`} 
+                    onClick={() => {changeModal()}}
                 />
 
             </div>

@@ -1,5 +1,6 @@
 import { CustomProps } from "../../classes.typescript/interfaces/CustomPropsModal";
 import { selectModalSeller } from "../../redux/features/seller/seller.slice";
+import ModalPost from "../components/ModalPost";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Modal from "react-modal";
@@ -29,6 +30,7 @@ export default function Layout(): JSX.Element {
             <Footer />
 
             <Modal isOpen={modal} style={customStyles}>
+                <ModalPost />
             </Modal>
         </>
     )

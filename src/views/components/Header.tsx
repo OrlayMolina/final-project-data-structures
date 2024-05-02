@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 const navigation = [
     { name: 'WallPost', to: '/', current: true },
     { name: 'Contacts', to: '/contacts', current: true },
-    { name: 'Products', to: '/products', current: false },
+    { name: 'Products', to: '/product', current: false },
     { name: 'Contact Suggestion', to: '/suggestions', current: false },
 ];
 
