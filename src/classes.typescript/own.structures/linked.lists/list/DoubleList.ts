@@ -42,9 +42,11 @@ export class DoubleList<T> implements Iterable<T>{
             this.firstNode = newNode;
             this.lastNode = newNode;
         }else {
-            newNode.setNextNode(this.firstNode);
-            
+            this.lastNode?.setNextNode(newNode);
+            newNode.setPreviousNode(this.lastNode);
+            this.lastNode = newNode;
         }
+        this.size++;
     }
 
     /**

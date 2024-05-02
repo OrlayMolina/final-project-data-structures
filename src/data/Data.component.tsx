@@ -4,6 +4,10 @@ import { Comment } from '../classes.typescript/models/Comment';
 import { Category } from "../classes.typescript/enum/Category";
 import { PostState } from '../classes.typescript/enum/PostState';
 import { Post } from '../classes.typescript/models/Post';
+import { Seller } from '../classes.typescript/models/Sellers';
+import { Chat } from '../classes.typescript/models/Chat';
+import { Request } from '../classes.typescript/models/Request';
+import { setSellerList } from '../redux/features/social.media/social.media.slice';
 import { setCurrentPost } from "../redux/features/post/post.slice";
 import { setPostList } from '../redux/features/social.media/social.media.slice';
 import { DoubleList } from "../classes.typescript/own.structures/linked.lists/list/DoubleList";
@@ -73,16 +77,64 @@ export default function Data(): JSX.Element {
             likes: new DoubleList<Like>()
         });
 
+        const post5: Post = new Post({
+            nameProduct: 'IPad',
+            description: 'This is an IPad',
+            image: 'ipad',
+            category: Category.TECNOLOGY,
+            price: 1500,
+            postState: PostState.PUBLISHED,
+            comments: new DoubleList<Comment>(),
+            likes: new DoubleList<Like>()
+        });
+
+        const post6: Post = new Post({
+            nameProduct: 'Bed',
+            description: 'This is a Bed',
+            image: 'cama',
+            category: Category.HOME,
+            price: 180,
+            postState: PostState.PUBLISHED,
+            comments: new DoubleList<Comment>(),
+            likes: new DoubleList<Like>()
+        });
+
         const postList: DoubleList<Post> = new DoubleList<Post>();
         postList.putInFront(post1);
         postList.putInFront(post2);
         postList.putInFront(post3);
         postList.putInFront(post4);
+        postList.putInFront(post5);
+        postList.putInFront(post6);
 
         const postListPayload = postList.toJSON();
 
         dispatch(setPostList(postListPayload));
     }, [dispatch]);
+
+    useEffect( () => {
+        const seller: Seller = new Seller({
+            name: 'John',
+            lastName: 'Doe',
+            ID: '123456789',
+            address: '1234 Main St',
+            userName: 'johndoe',
+            password: '1234',
+            admin: true,
+            postList: new DoubleList<Post>(),
+            contactList: new DoubleList<Seller>(),
+            chatList: new DoubleList<Chat>(),
+            requestReceivedList: new DoubleList<Request>(),
+            requestSentList: new DoubleList<Request>()
+            
+        });
+
+        const sellerList: DoubleList<Seller> = new DoubleList<Seller>();
+        sellerList.putInFront(seller);
+        const sellerListPayload = sellerList.toJSON();
+        dispatch(setSellerList(sellerListPayload));
+
+    }, [dispatch])
 
     return (
         <div>

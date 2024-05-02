@@ -1,101 +1,80 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import Alert from "./Alert";
+import { createRef, RefObject, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { DataLogin } from "../../classes.typescript/interfaces/CustomPropsModal";
 
-function Login() {
+export default function Login() {
+  const emailRef: RefObject<HTMLInputElement> = createRef();
+  const passwordRef: RefObject<HTMLInputElement> = createRef();
 
+  const [errors, setErrors] = useState<string[]>([]);
+  const { login } = useAuth({middleware: 'guest', url: '/'});
 
-  
-    const [formulario, setFormulario] = useState({
-      userName: "",
-      password: ""
-    });
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
 
-  
-    return (
-      <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mb-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <div className="flex justify-center border-solid border-2 py-2 mt-16 rounded-2xl shadow-lg bg-orange-100">
-              <p className="font-bold text-3xl flex justify-center">
-                ECommerce <span className="text-indigo-600 text-4xl">UCamp</span>
-              </p>
-            </div>
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Ingresa a tu cuenta para continuar comprando
-            </h2>
+    const datos: DataLogin = {
+      email: emailRef?.current?.value,
+      password: passwordRef?.current?.value,
+    };
+
+    login(datos, setErrors);
+
+  };
+
+  return (
+    <>
+      <h1 className="text-4xl font-black mb-5">Log In</h1>
+      <p>To create an order you must log in</p>
+
+      <div className="bg-white shadow-lg rounded-md mt-10 px-5 py-10">
+        <form onSubmit={handleSubmit} noValidate>
+          {errors
+            ? errors.map((error, i) => <Alert key={i}>{error}</Alert>)
+            : null}
+          <div className="mb-4">
+            <label htmlFor="email" className="text-slate-800">
+              Email:
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="mt-2 w-full p-3 bg-gray-50"
+              name="email"
+              placeholder="Your Email"
+              ref={emailRef}
+            />
           </div>
-  
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form 
-              noValidate 
-              className="space-y-6">
-              <div>
-                <label
-                  htmlFor="userName"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  userName
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="userName"
-                    value={formulario.userName}
-                    name="userName"
-                    type="text"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-  
-              <div>
-                <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Contraseña
-                  </label>
-                  <div className="text-sm">
-                    <Link
-                      to="/forgot-password"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
-                      ¿Olvidó su contraseña?
-                    </Link>
-                  </div>
-                </div>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    value={formulario.password}
-                    name="password"
-                    type="password"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-  
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Iniciar Sesión
-                </button>
-              </div>
-            </form>
-  
-            <p className="mt-10 text-center text-sm text-gray-500">
-              ¿Aún no tienes Cuenta?{" "}
-              <a
-                href="/signup"
-                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-              >
-                Crea una Cuenta de ECommerce UCamp
-              </a>
-            </p>
+
+          <div className="mb-4">
+            <label htmlFor="password" className="text-slate-800">
+              Password:
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="mt-2 w-full p-3 bg-gray-50"
+              name="password"
+              placeholder="Your Password"
+              ref={passwordRef}
+            />
           </div>
-        </div>
-      </>
-    );
-  }
+
+          <input
+            type="submit"
+            value="Log in"
+            className="bg-teal-600 hover:bg-teal-800 text-white w-full rounded-xl shadow-md mt-5 p-3 uppercase font-bold cursor-pointer"
+          />
+        </form>
+      </div>
+
+      <nav className="mt-5">
+        <Link to="/account/register">
+          You do not have an account?, {""}
+          <span className="font-medium">Create an Account</span>
+        </Link>
+      </nav>
+    </>
+  );
+}
