@@ -2,4 +2,5 @@ import { ISocialMediaSellers } from './../../../classes.typescript/interfaces/So
 
 export interface ISocialMediaSellersState extends ISocialMediaSellers{
     status: 'idle' | 'loading' | 'failed';
+    loginErrors: string[];
 }

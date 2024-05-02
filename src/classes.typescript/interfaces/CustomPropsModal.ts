@@ -10,7 +10,7 @@ export interface CustomProps {
 }
 
 export interface DataLogin {
-    email: string | undefined;
+    username: string | undefined;
     password: string | undefined;
 }
 

@@ -1,10 +1,15 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectUserLogged } from '../../social.media/social.media.slice';
 import { IPost } from '../../../../classes.typescript/interfaces/Post.type';
 import { formatMoney } from '../../../../classes.typescript/helpers/utilities';
 
 export default function Post({ post }: {post: IPost | null}):JSX.Element {
     //Para la creacion de una constante [nombrevariable, metodoModificador]
     const [heartColor, setHeartColor] = useState<'none' | 'red'>('none');
+    const userLogged = useSelector(selectUserLogged);
+    const navigate = useNavigate();
     
 
     if (!post) {
@@ -17,6 +22,12 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
         setHeartColor(heartColor === 'none' ? 'red' : 'none');
     };
 
+    const handleCartClick = () => {
+        if(!userLogged){
+            navigate('/account/login');
+        }
+    }
+
     return (
         <div className="border border-slate-500 w-80 p-6 shadow-lg rounded-xl bg-orange-100">
             <div className="flex flex-col items-start">
@@ -26,6 +37,7 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
                     src={`/img/${image}.png`}
                     alt={`${nameProduct} image`}
                     className="w-auto object-cover rounded-xl cursor-pointer hover:opacity-80 transition duration-300 ease-in-out"
+                    onClick={handleCartClick}
                 />
 
                 <div className="py-2 flex items-center">

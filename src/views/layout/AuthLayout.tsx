@@ -24,10 +24,10 @@ export default function AuthLayout(): JSX.Element {
     return (
         <div className="bg-gray-100">
             <Header />
-            <h1 className="mt-6 text-center font-sans font-medium text-3xl text-white py-4">
+            <h1 className="mt-8 text-center font-sans font-medium text-3xl text-white">
                 <span className="px-8 py-1 bg-teal-600 rounded-xl shadow-lg">Welcome to Social Media Sellers!</span>
             </h1>
-            <main className="max-w-4xl m-auto mt-4 mb-10 md:mb-14 lg:mb-32 flex flex-col md:flex-row items-center">
+            <main className="max-w-4xl m-auto mb-10 md:mb-14 lg:mb-32 flex flex-col md:flex-row items-center">
 
                 <img
                     src="/img/logo_background_white.JPG"

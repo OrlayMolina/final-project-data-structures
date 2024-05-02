@@ -1,111 +1,51 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { DataLogin, DataRegister } from "../classes.typescript/interfaces/CustomPropsModal";
+import { Seller } from "../classes.typescript/models/Sellers";
+import { selectSellerList, selectLoginErrors, setLoginErrors } from "../redux/features/social.media/social.media.slice";
+import { setUserLogged, selectUserLogged } from "../redux/features/social.media/social.media.slice";
+import { DataLogin } from "../classes.typescript/interfaces/CustomPropsModal";
 
 type Middleware = 'guest' | 'auth' | 'admin';
 
-export const useAuth = ({middleware, url}: {middleware: Middleware, url: string}) => {
-
-    const [user, setUser] = useState(null);
-
+export const useAuth = ({ middleware, url }: { middleware: Middleware, url: string }) => {
+    const dispatch = useDispatch();
+    const userLogged = useSelector(selectUserLogged);
+    const sellerList = useSelector(selectSellerList);
     const navigate = useNavigate();
+    const errors = useSelector(selectLoginErrors);
 
-    const fetchUser = useCallback(async () => {
-        const response = await fetch('/api/user', {
-            headers: {
-                'Content-Type': 'application/json'
+    const login = async (datos: DataLogin) => {
+        // Lógica de autenticación simulada sin llamadas API reales
+        let foundSeller: Seller | null = null;
+        for (const seller of sellerList) {
+            if (seller.getUserName() === datos.username && seller.getPassword() === datos.password) {
+                foundSeller = seller;
+                break;
             }
-        });
-        if (!response.ok) {
-            throw new Error('Error fetching user data');
         }
-        const data = await response.json();
-        setUser(data);
-        return data;
-    }, []);
 
-    const login = async (datos: DataLogin, setErrores: (errores: string[]) => void) =>{
-        
-        try {
-            const response = await fetch('/account/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datos)
-            });
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Error logging in');
-            }
-
-            localStorage.setItem('AUTH_TOKEN', data.token);
-            setErrores([]);
-            await fetchUser();
-        } catch (error: unknown) {
-            setErrores([(error as Error).message || 'Error logging in']);
-        }    
-    }
-
-    const register = async (datos: DataRegister, setErrors: (errors: string[]) => void, setSuccess: (success: boolean) => void) => {
-        
-        try {
-            const response = await fetch('/account/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datos)
-            });
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Error registering');
-            }
-
-            localStorage.setItem('AUTH_TOKEN', data.token);
-            setErrors([]);
-            await fetchUser();
-
-            setSuccess(true);
-            setTimeout(() => {
-                setSuccess(false);
-            }, 3000);
-        } catch (error: unknown) {
-            setErrors([(error as Error).message || 'Error registering']);
+        if (foundSeller) {
+            dispatch(setUserLogged(true));
+            navigate("/");
+        } else {
+            dispatch(setLoginErrors(["invalid credentials"]));
         }
-    }
+    };
 
-    const logout = async () => {
-        await fetch('/account/logout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        localStorage.removeItem('AUTH_TOKEN');
-    }
-
+    const logout = () => {
+        dispatch(setUserLogged(false));
+        navigate(url);
+    };
 
     useEffect(() => {
-        (async () => {
-            try {
-                const user = await fetchUser();
-                if (middleware === 'guest' && user) {
-                    navigate(url);
-                } else if (middleware === 'auth' && !user) {
-                    navigate(url);
-                } else if (middleware === 'admin' && (!user || user.role !== 'admin')) {
-                    navigate(url);
-                }
-            } catch (error) {
-                if (middleware === 'auth' || middleware === 'admin') {
-                    navigate(url);
-                }
-            }
-        })();
-    }, [middleware, url, navigate, fetchUser]);
+        // Verificar el estado de autenticación del usuario y redirigir si es necesario
+        if (middleware === 'guest' && userLogged) {
+            navigate(url);
+        } else if ((middleware === 'auth' || middleware === 'admin') && !userLogged) {
+            navigate(url);
+        }
+    }, [middleware, url, userLogged, navigate]);
 
-    return { login, register, logout, user };
-}
+    return { userLogged, errors, login, logout };
+};
