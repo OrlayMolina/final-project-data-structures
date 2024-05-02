@@ -6,7 +6,6 @@ import { DoubleList } from '../../../classes.typescript/own.structures/linked.li
 import { Like } from '../../../classes.typescript/models/Like';
 import { Comment } from "../../../classes.typescript/models/Comment";
 import { IPost } from "../../../classes.typescript/interfaces/Post.type";
-import { Post } from "../../../classes.typescript/models/Post";
 
 const initialState: PostsState = {
     status: 'idle',
@@ -25,7 +24,7 @@ const postSlice = createSlice({
     name: 'post',
     initialState,
     reducers: {
-        setCurrentPost: (state, action: PayloadAction<Post>) => {
+        setCurrentPost: (state, action: PayloadAction<IPost>) => {
             state.currentPost = action.payload;
         },
         setPost: (state, action: PayloadAction<IPost>) => {

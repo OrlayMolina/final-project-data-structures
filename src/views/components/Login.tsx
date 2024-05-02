@@ -31,7 +31,7 @@ export default function Login() {
             <div className="bg-white shadow-lg rounded-md mt-6 px-5 py-10">
                 <form onSubmit={handleSubmit} noValidate>
                     {errors.length > 0 && errors.map((error, i) => <Alert key={i}>{error}</Alert>)}
-                    <div className="mb-4 mt-2">
+                    <div className="mb-4">
                         <label htmlFor="username" className="text-slate-800">Username:</label>
                         <input type="text" id="username" className="mt-2 w-full p-3 bg-gray-50"
                             name="username" placeholder="Your Username" ref={userNameRef} />
