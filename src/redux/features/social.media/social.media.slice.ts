@@ -7,6 +7,7 @@ import { Post } from '../../../classes.typescript/models/Post';
 const initialState: ISocialMediaSellersState = {
     status: 'idle',
     loginErrors: [],
+    sellerLogged: null,
     userLogged: false,
     sellerList: new DoubleList<Seller>(),
     postList: new DoubleList<Post>()
@@ -21,6 +22,9 @@ const socialMediaSlice = createSlice({
         },
         setLoginErrors: (state, action: PayloadAction<string[]>) => {
             state.loginErrors = action.payload;
+        },
+        setSellerLogged: (state, action: PayloadAction<Seller | null>) => {
+            state.sellerLogged = action.payload;
         },
         // setSecretKey: (state, action: PayloadAction<string>) => {
         //     state.secretKey = action.payload;
@@ -40,6 +44,7 @@ const socialMediaSlice = createSlice({
 export const { 
     setStatus,
     setLoginErrors,
+    setSellerLogged,
     setUserLogged,
     setSellerList,
     setPostList
@@ -47,6 +52,7 @@ export const {
 
 export const selectStatus = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.status;
 export const selectLoginErrors = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.loginErrors;
+export const selectSellerLogged = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.sellerLogged;
 export const selectUserLogged = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.userLogged;
 export const selectSellerList = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.sellerList;
 export const selectPostList = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.postList;

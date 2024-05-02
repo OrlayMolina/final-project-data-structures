@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Seller } from "../classes.typescript/models/Sellers";
 import { selectSellerList, selectLoginErrors, setLoginErrors } from "../redux/features/social.media/social.media.slice";
-import { setUserLogged, selectUserLogged } from "../redux/features/social.media/social.media.slice";
+import { setUserLogged, selectUserLogged, setSellerLogged } from "../redux/features/social.media/social.media.slice";
 import { DataLogin } from "../classes.typescript/interfaces/CustomPropsModal";
 
 type Middleware = 'guest' | 'auth' | 'admin';
@@ -27,9 +27,15 @@ export const useAuth = ({ middleware, url }: { middleware: Middleware, url: stri
 
         if (foundSeller) {
             dispatch(setUserLogged(true));
+            dispatch(setSellerLogged(foundSeller));
             navigate("/");
         } else {
             dispatch(setLoginErrors(["invalid credentials"]));
+
+            setTimeout(() => {
+                dispatch(setLoginErrors([]));
+            }, 3000);
+
         }
     };
 

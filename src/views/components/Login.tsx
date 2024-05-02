@@ -28,10 +28,10 @@ export default function Login() {
             <h1 className="text-4xl font-black mb-5">Log In</h1>
             <p>To create an order you must log in</p>
 
-            <div className="bg-white shadow-lg rounded-md mt-10 px-5 py-10">
+            <div className="bg-white shadow-lg rounded-md mt-6 px-5 py-10">
                 <form onSubmit={handleSubmit} noValidate>
                     {errors.length > 0 && errors.map((error, i) => <Alert key={i}>{error}</Alert>)}
-                    <div className="mb-4">
+                    <div className="mb-4 mt-2">
                         <label htmlFor="username" className="text-slate-800">Username:</label>
                         <input type="text" id="username" className="mt-2 w-full p-3 bg-gray-50"
                             name="username" placeholder="Your Username" ref={userNameRef} />

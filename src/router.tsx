@@ -1,4 +1,5 @@
 import {createBrowserRouter} from 'react-router-dom';
+import WallPost from './views/components/WallPost';
 import Layout from './views/layout/Layout';
 import AuthLayout from './views/layout/AuthLayout';
 import Login from './views/components/Login';
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home/>
+            },
+            {
+                path: '/wallpost',
+                element: <WallPost />
             }
         ]
     },

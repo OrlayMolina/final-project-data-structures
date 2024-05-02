@@ -1,0 +1,36 @@
+.aside-container {
+    background-color: #f3f4f6;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+}
+
+.aside-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.aside-menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.aside-menu li {
+    margin-bottom: 8px;
+}
+
+.aside-menu a {
+    display: block;
+    padding: 8px;
+    border-radius: 8px;
+    color: #555;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.aside-menu a:hover {
+    background-color: #2cceab;
+}
