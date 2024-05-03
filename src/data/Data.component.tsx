@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Comment } from '../classes.typescript/models/Comment';
-import { Category } from "../classes.typescript/enum/Category";
 import { PostState } from '../classes.typescript/enum/PostState';
+import { CategoryPost } from '../classes.typescript/models/CategoryPost';
 import { Post } from '../classes.typescript/models/Post';
 import { Seller } from '../classes.typescript/models/Sellers';
 import { Chat } from '../classes.typescript/models/Chat';
 import { Request } from '../classes.typescript/models/Request';
-import { setSellerList } from '../redux/features/social.media/social.media.slice';
-import { setCurrentPost } from "../redux/features/post/post.slice";
+import { setSellerList, setAllCategories } from '../redux/features/social.media/social.media.slice';
 import { setPostList } from '../redux/features/social.media/social.media.slice';
 import { DoubleList } from "../classes.typescript/own.structures/linked.lists/list/DoubleList";
 import { Like } from "../classes.typescript/models/Like";
@@ -16,20 +15,31 @@ import { Like } from "../classes.typescript/models/Like";
 export default function Data(): JSX.Element {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const post: Post = new Post({
-            nameProduct: 'Biclycle',
-            description: 'This is a Biclyce',
-            image: 'bicicleta',
-            category: Category.SPORT,
-            price: 395,
-            postState: PostState.PUBLISHED, // Replace 'postState' with 'PostState'
-            comments: new DoubleList<Comment>(),
-            likes: new DoubleList<Like>()
-        });
-        const postPayload = post.toJSON(); 
+    // useEffect(() => {
+    //     const post: Post = new Post({
+    //         nameProduct: 'Biclycle',
+    //         description: 'This is a Biclyce',
+    //         image: 'bicicleta',
+    //         category: Category.SPORT,
+    //         price: 395,
+    //         postState: PostState.PUBLISHED, // Replace 'postState' with 'PostState'
+    //         comments: new DoubleList<Comment>(),
+    //         likes: new DoubleList<Like>()
+    //     });
+    //     const postPayload = post.toJSON(); 
 
-        dispatch(setCurrentPost(postPayload));
+    //     dispatch(setCurrentPost(postPayload));
+    // }, [dispatch]);
+
+    useEffect( () => {
+        const category1: CategoryPost = new CategoryPost(1, 'APPLIANCES');
+        const category2: CategoryPost = new CategoryPost(1, 'BOOKS');
+        const category3: CategoryPost = new CategoryPost(2, 'HOME');
+        const category4: CategoryPost = new CategoryPost(3, 'TECHNOLOGY');
+        const category5: CategoryPost = new CategoryPost(4, 'SPORT');
+
+        const categoryList: CategoryPost[] = [category1, category2, category3, category4, category5];
+        dispatch(setAllCategories(categoryList));
     }, [dispatch]);
 
     useEffect(() => {
@@ -37,7 +47,7 @@ export default function Data(): JSX.Element {
             nameProduct: 'Bicycle',
             description: 'This is Bicycle',
             image: 'bicicleta',
-            category: Category.SPORT,
+            category: 'SPORT',
             price: 145,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),
@@ -48,7 +58,7 @@ export default function Data(): JSX.Element {
             nameProduct: 'Computer',
             description: 'This is Computer',
             image: 'computador',
-            category: Category.TECNOLOGY,
+            category: 'TECHNOLOGY',
             price: 278,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),
@@ -59,7 +69,7 @@ export default function Data(): JSX.Element {
             nameProduct: 'JBL Speaker',
             description: 'This is a JBL Speaker',
             image: 'jbl',
-            category: Category.TECNOLOGY,
+            category: 'TECHNOLOGY',
             price: 96,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),
@@ -70,7 +80,7 @@ export default function Data(): JSX.Element {
             nameProduct: 'Ducati',
             description: 'This is a Ducati',
             image: 'ducati',
-            category: Category.TECNOLOGY,
+            category: 'TECHNOLOGY',
             price: 3500,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),
@@ -81,7 +91,7 @@ export default function Data(): JSX.Element {
             nameProduct: 'IPad',
             description: 'This is an IPad',
             image: 'ipad',
-            category: Category.TECNOLOGY,
+            category: 'TECHNOLOGY',
             price: 1500,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),
@@ -92,7 +102,7 @@ export default function Data(): JSX.Element {
             nameProduct: 'Bed',
             description: 'This is a Bed',
             image: 'cama',
-            category: Category.HOME,
+            category: 'HOME',
             price: 180,
             postState: PostState.PUBLISHED,
             comments: new DoubleList<Comment>(),

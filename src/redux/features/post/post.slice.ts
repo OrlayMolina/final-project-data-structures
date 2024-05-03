@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PostsState } from "./post.types";
-import { Category } from "../../../classes.typescript/enum/Category";
 import { PostState } from '../../../classes.typescript/enum/PostState';
 import { DoubleList } from '../../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { Like } from '../../../classes.typescript/models/Like';
@@ -14,7 +13,7 @@ const initialState: PostsState = {
     description: '',
     price: 0,
     image: '',
-    category: Category.VOID,
+    category: '',
     postState: PostState.VOID,
     comments: new DoubleList<Comment>(),
     likes: new DoubleList<Like>()

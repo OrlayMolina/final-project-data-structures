@@ -1,3 +1,4 @@
+import { CategoryPost } from './../../../classes.typescript/models/CategoryPost';
 import { DoubleList } from './../../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ISocialMediaSellersState } from "./social.media.type";
@@ -8,6 +9,8 @@ const initialState: ISocialMediaSellersState = {
     status: 'idle',
     loginErrors: [],
     sellerLogged: null,
+    postCategory: null,
+    allCategories: [],
     userLogged: false,
     sellerList: new DoubleList<Seller>(),
     postList: new DoubleList<Post>()
@@ -32,6 +35,12 @@ const socialMediaSlice = createSlice({
         setUserLogged: (state, action: PayloadAction<boolean>) => {
             state.userLogged = action.payload;
         },
+        setPostCategory: (state, action: PayloadAction<CategoryPost | null>) => {
+            state.postCategory = action.payload;
+        },
+        setAllCategories: (state, action: PayloadAction<CategoryPost[]>) => {
+            state.allCategories = action.payload;
+        },
         setSellerList: (state, action: PayloadAction<DoubleList<Seller>>) => {
             state.sellerList = action.payload;
         },
@@ -46,6 +55,8 @@ export const {
     setLoginErrors,
     setSellerLogged,
     setUserLogged,
+    setPostCategory,
+    setAllCategories,
     setSellerList,
     setPostList
  } = socialMediaSlice.actions;
@@ -54,6 +65,8 @@ export const selectStatus = (state: { socialMedia: ISocialMediaSellersState }) =
 export const selectLoginErrors = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.loginErrors;
 export const selectSellerLogged = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.sellerLogged;
 export const selectUserLogged = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.userLogged;
+export const selectPostCategory =(state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.postCategory;
+export const selectAllCategories = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.allCategories;
 export const selectSellerList = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.sellerList;
 export const selectPostList = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.postList;
 
