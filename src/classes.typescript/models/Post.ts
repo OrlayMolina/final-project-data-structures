@@ -1,5 +1,4 @@
 import { PostState } from './../enum/PostState';
-import { Category } from "../enum/Category";
 import { Like } from "./Like";
 import { Comment } from './Comment';
 import { DoubleList } from "../own.structures/linked.lists/list/DoubleList";
@@ -13,7 +12,7 @@ export class Post {
     nameProduct: string;
     description: string;
     image: string;
-    category: Category;
+    category: string;
     price: number;
     postState: PostState;
     comments: DoubleList<Comment>;
@@ -106,7 +105,7 @@ public constructor({nameProduct, description, image,
      * Returns the category of the product.
      * @returns The category of the product.
      */
-    public getCategory(): Category {
+    public getCategory(): string {
         return this.category;
     }
     
@@ -114,7 +113,7 @@ public constructor({nameProduct, description, image,
      * Sets the category of the product.
      * @param category The new category of the product.
      */
-    public setCategory(category: Category): void {
+    public setCategory(category: string): void {
         this.category = category;
     }
     
