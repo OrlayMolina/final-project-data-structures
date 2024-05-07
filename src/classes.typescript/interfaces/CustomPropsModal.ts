@@ -8,3 +8,18 @@ export interface CustomProps {
         marginRight?: string;
     }
 }
+
+export interface DataLogin {
+    username: string | undefined;
+    password: string | undefined;
+}
+
+export interface DataRegister {
+    name: string | undefined;
+    lastname: string | undefined;
+    ID: string | undefined;
+    address: string | undefined;
+    username: string | undefined;
+    password: string | undefined;
+    password_confirmation: string | undefined;
+}

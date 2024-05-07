@@ -1,12 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PostsState } from "./post.types";
-import { Category } from "../../../classes.typescript/enum/Category";
 import { PostState } from '../../../classes.typescript/enum/PostState';
 import { DoubleList } from '../../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { Like } from '../../../classes.typescript/models/Like';
 import { Comment } from "../../../classes.typescript/models/Comment";
 import { IPost } from "../../../classes.typescript/interfaces/Post.type";
-import { Post } from "../../../classes.typescript/models/Post";
 
 const initialState: PostsState = {
     status: 'idle',
@@ -15,7 +13,7 @@ const initialState: PostsState = {
     description: '',
     price: 0,
     image: '',
-    category: Category.VOID,
+    category: '',
     postState: PostState.VOID,
     comments: new DoubleList<Comment>(),
     likes: new DoubleList<Like>()
@@ -25,7 +23,7 @@ const postSlice = createSlice({
     name: 'post',
     initialState,
     reducers: {
-        setCurrentPost: (state, action: PayloadAction<Post>) => {
+        setCurrentPost: (state, action: PayloadAction<IPost>) => {
             state.currentPost = action.payload;
         },
         setPost: (state, action: PayloadAction<IPost>) => {

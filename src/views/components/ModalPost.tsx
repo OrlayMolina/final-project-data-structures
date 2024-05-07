@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { formatMoney } from "../../classes.typescript/helpers/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { setModalSeller, selectModalSeller } from "../../redux/features/seller/seller.slice";
@@ -8,21 +8,25 @@ export default function ModalPost() {
 
     const dispatch = useDispatch();
     const modal = useSelector(selectModalSeller);
+    console.log(modal);
     const product = useSelector(selectCurrentPost);
     const { nameProduct, image, price } = product || {};
     const [quantity, setQuantity] = useState(1);
     const [edition, setEdition] = useState(false);
 
     const changeModal = () => {
+        console.log("modal");
         const newState = !modal;
+        console.log(newState)
         dispatch(setModalSeller(newState));
     }
     return (
+        
         <div className="md:flex gap-10">
-            <div className="md:w-1/3">
+            <div className="md:w-1/3 my-6 mx-6">
 
                 <img 
-                    src={`/img/${image}.JPG`} 
+                    src={`/img/${image}.png`} 
                     alt={`Imagen producto ${nameProduct}`} 
                 />
 
@@ -43,7 +47,7 @@ export default function ModalPost() {
                     </button>
                 </div>
 
-                <h1 className="text-3xl font-bold mt-5">
+                <h1 className="text-3xl font-bold">
                     {nameProduct}
                 </h1>
 
