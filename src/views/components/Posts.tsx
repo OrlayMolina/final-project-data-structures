@@ -9,7 +9,7 @@ export default function Posts() {
 
     return (
         <>
-            <div className="mt-10 mx-6 md:mx-12 lg:mx-16">
+            <div className="mt-10 mx-3 md:mx-4 lg:mx-6">
                 <h1 className="text-4xl text-teal-600 font-bold mb-5">Welcome to our Store!</h1>
                 <p className="text-2xl text-gray-800 mb-10">Choose your favorite product.</p>
 
