@@ -5,6 +5,7 @@ import AuthLayout from './views/layout/AuthLayout';
 import Login from './views/components/Login';
 import Register from './views/components/Register';
 import Home from './views/components/Home';
+import PersonalInformation from './views/components/PersonalInformation';
 
 const router = createBrowserRouter([
     {
@@ -15,9 +16,15 @@ const router = createBrowserRouter([
                 index: true,
                 element: <Home/>
             },
+        ]
+    },
+    {
+        path: '/wallpost',
+        element: <WallPost />,
+        children: [
             {
-                path: '/wallpost',
-                element: <WallPost />
+                index: true,
+                element: <PersonalInformation />
             }
         ]
     },
