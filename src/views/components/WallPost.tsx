@@ -1,12 +1,19 @@
 import Aside from "./Aside";
+import Header from "./Header";
+import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
 
 function WallPost() {
   return (
-    <div className="flex flex-col md:flex-row">
-      <Aside />
-      {/* Tu contenido de React aquí */}
-      <h1 className="text-black">hola</h1>
-    </div>
+    <>
+      <Header />
+      <div className="flex flex-col md:flex-row">
+        <Aside />
+        {/* Tu contenido de React aquí */}
+        <Outlet/>
+      </div>
+      <Footer />
+    </>
   );
 }
 
