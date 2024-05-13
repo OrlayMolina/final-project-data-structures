@@ -147,6 +147,7 @@ export class DoubleList<T> implements Iterable<T>{
         console.log("");
     }
 
+    
     public delete(nodeValue: T): T {
         let node: DoubleNode<T> | null = this.searchNode(nodeValue);
 

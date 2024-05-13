@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 const navigation = [
     { name: 'WallPost', to: '/wallpost', current: true },
     { name: 'Your Posts', to: '/yourposts', current: false },
-    { name: 'Contact Suggestion', to: '/suggestions', current: false },
+    { name: 'Contact Suggestion', to: '/contact-suggestions', current: false },
 ];
 
 export default function Header(): JSX.Element {
