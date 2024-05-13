@@ -14,7 +14,7 @@ export default function AsideFilter({ category, onClickCategory }: CategoriesPro
     const name = category ? category.getCategory() : null;
 
     return (
-        <div className={`${currentCategory?.getId() === id ? "bg-blue-500" : "bg-white"} flex items-center gap-4 border w-full p-3 hover:bg-blue-400 cursor-pointer`}>
+        <div className={`${currentCategory?.getId() === id ? "bg-teal-400" : "bg-white"} flex items-center gap-4 border w-full p-3 hover:bg-teal-400 cursor-pointer`}>
 
             <button 
                 className="text-lg font-bold cursor-pointer truncate"
