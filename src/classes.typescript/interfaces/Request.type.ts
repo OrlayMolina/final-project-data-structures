@@ -4,7 +4,7 @@ import { Seller } from "../models/Sellers";
  */
 
 export interface IRequest{
-    seller: Seller;
+    contact: Seller | null;
     date: Date;
     accept: boolean;
 }

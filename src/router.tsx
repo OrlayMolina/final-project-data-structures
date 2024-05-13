@@ -6,6 +6,8 @@ import Login from './views/components/Login';
 import Register from './views/components/Register';
 import Home from './views/components/Home';
 import PersonalInformation from './views/components/PersonalInformation';
+import ContactSuggestions from './views/components/ContactSuggestions';
+import RequestSent from './views/components/RequestSent';
 
 const router = createBrowserRouter([
     {
@@ -25,8 +27,17 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <PersonalInformation />
+            },
+            {
+                path:'/wallpost/request-sent',
+                element: <RequestSent />
             }
+            
         ]
+    },
+    {
+        path: '/contact-suggestions',
+        element: <ContactSuggestions/>
     },
     {
         path: '/account',

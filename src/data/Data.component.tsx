@@ -12,25 +12,13 @@ import { setPostList } from '../redux/features/social.media/social.media.slice';
 import { DoubleList } from "../classes.typescript/own.structures/linked.lists/list/DoubleList";
 import { Like } from "../classes.typescript/models/Like";
 
+
+/**
+ * Component to initialize data in the application.
+ * Initializes categories, posts, and sellers.
+ */
 export default function Data(): JSX.Element {
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     const post: Post = new Post({
-    //         nameProduct: 'Biclycle',
-    //         description: 'This is a Biclyce',
-    //         image: 'bicicleta',
-    //         category: Category.SPORT,
-    //         price: 395,
-    //         postState: PostState.PUBLISHED, // Replace 'postState' with 'PostState'
-    //         comments: new DoubleList<Comment>(),
-    //         likes: new DoubleList<Like>()
-    //     });
-    //     const postPayload = post.toJSON(); 
-
-    //     dispatch(setCurrentPost(postPayload));
-    // }, [dispatch]);
-
     useEffect( () => {
         const category1: CategoryPost = new CategoryPost(1, 'APPLIANCES');
         const category2: CategoryPost = new CategoryPost(1, 'BOOKS');
@@ -123,7 +111,7 @@ export default function Data(): JSX.Element {
     }, [dispatch]);
 
     useEffect( () => {
-        const seller: Seller = new Seller({
+        const seller1: Seller = new Seller({
             name: 'John',
             lastName: 'Doe',
             ID: '123456789',
@@ -138,9 +126,106 @@ export default function Data(): JSX.Element {
             requestSentList: new DoubleList<Request>()
             
         });
+        const seller2: Seller = new Seller({
+            name: 'Alice',
+            lastName: 'Smith',
+            ID: '987654321',
+            address: '5678 Elm St',
+            userName: 'alicesmith',
+            password: '5678',
+            admin: false,
+            postList: new DoubleList<Post>(),
+            contactList: new DoubleList<Seller>(),
+            chatList: new DoubleList<Chat>(),
+            requestReceivedList: new DoubleList<Request>(),
+            requestSentList: new DoubleList<Request>()
+        });
+        
+        const seller3: Seller = new Seller({
+            name: 'Bob',
+            lastName: 'Johnson',
+            ID: '456789123',
+            address: '9101 Oak Ave',
+            userName: 'bobjohnson',
+            password: '9101',
+            admin: false,
+            postList: new DoubleList<Post>(),
+            contactList: new DoubleList<Seller>(),
+            chatList: new DoubleList<Chat>(),
+            requestReceivedList: new DoubleList<Request>(),
+            requestSentList: new DoubleList<Request>()
+        });
+        
+        const seller4: Seller = new Seller({
+            name: 'Emma',
+            lastName: 'Brown',
+            ID: '789123456',
+            address: '1122 Pine St',
+            userName: 'emmabrown',
+            password: '1122',
+            admin: false,
+            postList: new DoubleList<Post>(),
+            contactList: new DoubleList<Seller>(),
+            chatList: new DoubleList<Chat>(),
+            requestReceivedList: new DoubleList<Request>(),
+            requestSentList: new DoubleList<Request>()
+        });
+        
+        const seller5: Seller = new Seller({
+            name: 'Michael',
+            lastName: 'Wilson',
+            ID: '654321987',
+            address: '3344 Maple Ave',
+            userName: 'michaelwilson',
+            password: '3344',
+            admin: false,
+            postList: new DoubleList<Post>(),
+            contactList: new DoubleList<Seller>(),
+            chatList: new DoubleList<Chat>(),
+            requestReceivedList: new DoubleList<Request>(),
+            requestSentList: new DoubleList<Request>()
+        });
+        
+        const seller6: Seller = new Seller({
+            name: 'Sophia',
+            lastName: 'Taylor',
+            ID: '321987654',
+            address: '5566 Walnut St',
+            userName: 'sophiataylor',
+            password: '5566',
+            admin: false,
+            postList: new DoubleList<Post>(),
+            contactList: new DoubleList<Seller>(),
+            chatList: new DoubleList<Chat>(),
+            requestReceivedList: new DoubleList<Request>(),
+            requestSentList: new DoubleList<Request>()
+        });
+        
+        const seller7: Seller = new Seller({
+            name: 'James',
+            lastName: 'Anderson',
+            ID: '567890123',
+            address: '7788 Cedar St',
+            userName: 'jamesanderson',
+            password: '7788',
+            admin: false,
+            postList: new DoubleList<Post>(),
+            contactList: new DoubleList<Seller>(),
+            chatList: new DoubleList<Chat>(),
+            requestReceivedList: new DoubleList<Request>(),
+            requestSentList: new DoubleList<Request>()
+        });
+
+
 
         const sellerList: DoubleList<Seller> = new DoubleList<Seller>();
-        sellerList.putInFront(seller);
+        sellerList.putInFront(seller1);
+        sellerList.putInFront(seller2);
+        sellerList.putInFront(seller3);
+        sellerList.putInFront(seller4);
+        sellerList.putInFront(seller5);
+        sellerList.putInFront(seller6);
+        sellerList.putInFront(seller7);
         const sellerListPayload = sellerList.toJSON();
         dispatch(setSellerList(sellerListPayload));
 
