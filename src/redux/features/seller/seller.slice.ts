@@ -1,10 +1,10 @@
+import { Request } from './../../../classes.typescript/models/Request';
 import { DoubleList } from './../../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SellerState } from "./seller.types.state";
 import { Post } from '../../../classes.typescript/models/Post';
 import { Seller } from '../../../classes.typescript/models/Sellers';
 import { Chat } from '../../../classes.typescript/models/Chat';
-import { Request } from '../../../classes.typescript/models/Request';
 
 // Define the initial state for the seller slice
 const initialState: SellerState = {
@@ -45,6 +45,14 @@ const sellerSlice = createSlice({
         setPostList: (state, action: PayloadAction<DoubleList<Post>>) => {
             state.postList = action.payload;
         },
+        addPost: (state, action: PayloadAction<Post>) => {
+            const updatedPostList = new DoubleList<Post>();
+            if (state.postList) {
+                state.postList.forEach(post => updatedPostList.putInFront(post));
+            }
+            updatedPostList.putInFront(action.payload);
+            state.postList = updatedPostList;
+        },
         setContactList: (state, action: PayloadAction<DoubleList<Seller>>) => {
             state.contactList = action.payload;
         },
@@ -56,6 +64,14 @@ const sellerSlice = createSlice({
         }, 
         setRequestSentList: (state, action: PayloadAction<DoubleList<Request>>) => {
             state.requestSentList = action.payload;
+        },
+        addRequestSent: (state, action: PayloadAction<Request>) => {
+            const updatedRequestSentList = new DoubleList<Request>();
+            if(state.requestSentList){
+                state.requestSentList.forEach(request => updatedRequestSentList.putInFront(request));
+            }
+            updatedRequestSentList.putInFront(action.payload);
+            state.requestSentList = updatedRequestSentList;
         },
         setName: (state, action: PayloadAction<string>) => {
             state.name = action.payload;
@@ -101,10 +117,12 @@ export const {
     setTotalPosts, 
     setAdmin, 
     setPostList, 
+    addPost,
     setContactList, 
     setChatList, 
     setRequestReceivedList, 
     setRequestSentList, 
+    addRequestSent,
     setName, 
     setLastName, 
     setID, 

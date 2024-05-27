@@ -5,6 +5,6 @@ export enum PostState {
     CANCELLED,
     PUBLISHED,
     SOLD,
-    VOID
+    DRAFT
     
 }

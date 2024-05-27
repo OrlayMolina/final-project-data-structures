@@ -254,6 +254,20 @@ export class DoubleList<T> implements Iterable<T>{
         throw new Error("The list is empty");
     }
 
+    /**
+     * Applies a function to each item in the list.
+     * @param callbackfn A function that accepts up to three arguments. forEach calls the callbackfn function one time for each element in the list.
+     */
+    public forEach(callbackfn: (value: T, index: number, list: DoubleList<T>) => void): void {
+        let node = this.firstNode;
+        let index = 0;
+        while (node !== null) {
+            callbackfn(node.getData(), index, this);
+            node = node.getNextNode();
+            index++;
+        }
+    }
+
 
     /**
      * Retrieves the node at the specified index in the list.

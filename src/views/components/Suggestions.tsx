@@ -2,8 +2,7 @@ import { Seller } from '../../classes.typescript/models/Sellers';
 import { selectSellerLogged } from '../../redux/features/social.media/social.media.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Request } from '../../classes.typescript/models/Request';
-import { DoubleList } from '../../classes.typescript/own.structures/linked.lists/list/DoubleList';
-import { IRequest } from '../../classes.typescript/interfaces/Request.type';
+import { addRequestSent } from '../../redux/features/seller/seller.slice';
 
 /**
  * Component to render a suggestion for contacting a seller.
@@ -19,13 +18,9 @@ export default function Suggestions({ contact }: {contact: Seller | null}):JSX.E
     const handleSummit = async (e: { preventDefault: () => void }) =>{
         e.preventDefault();
         const date = new Date();
-        const dateString = date.toString();
         const accept: boolean = false;
         const requestSent: Request = new Request({ contact, date, accept });
-        const requestList: DoubleList<Request> = new DoubleList<Request>();
-        requestList.putInFront(requestSent);
-        seller?.setRequestSentList(requestList);
-
+        dispatch(addRequestSent(requestSent));
     }
 
 
