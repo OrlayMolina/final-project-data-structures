@@ -4,12 +4,12 @@ import { IPerson } from "../interfaces/Person.type";
  */
 export abstract class Person {
 
-    private name: string;
-    private lastName: string;
-    private ID: string;
-    private address: string;
-    private userName: string;
-    private password: string; 
+    name: string;
+    lastName: string;
+    ID: string;
+    address: string;
+    userName: string;
+    password: string; 
     
      /**
      * Creates an instance of Person.

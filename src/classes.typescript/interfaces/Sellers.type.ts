@@ -9,9 +9,9 @@ import { IPerson } from "./Person.type";
  */
 export interface ISeller extends IPerson{
     admin: boolean;
-    postList: DoubleList<Post>;
-    contactList: DoubleList<Seller>;
-    chatList: DoubleList<Chat>;
-    requestReceivedList: DoubleList<Request>;
-    requestSentList: DoubleList<Request>;
+    postList?: DoubleList<Post>;
+    contactList?: DoubleList<Seller>;
+    chatList?: DoubleList<Chat>;
+    requestReceivedList?: DoubleList<Request>;
+    requestSentList?: DoubleList<Request>;
 }
