@@ -1,51 +1,67 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { selectUserLogged } from '../../social.media/social.media.slice';
+import { addLike } from '../post.slice';
+import { selectUserLogged, selectSellerLogged } from '../../social.media/social.media.slice';
 import { setCurrentPost } from '../post.slice';
 import { selectModalSeller, setModalSeller } from '../../seller/seller.slice';
 import { IPost } from '../../../../classes.typescript/interfaces/Post.type';
 import { formatMoney } from '../../../../classes.typescript/helpers/utilities';
+import { Like } from '../../../../classes.typescript/models/Like';
 
-export default function Post({ post }: {post: IPost | null}):JSX.Element {
+export default function Post({ post }: { post: IPost | null }): JSX.Element {
     const dispatch = useDispatch();
-    //Para la creacion de una constante [nombrevariable, metodoModificador]
     const [heartColor, setHeartColor] = useState<'none' | 'red'>('none');
     const userLogged = useSelector(selectUserLogged);
+    const sellerLogged = useSelector(selectSellerLogged);
     const modalSeller = useSelector(selectModalSeller);
     const navigate = useNavigate();
-    
 
     if (!post) {
         return <div>Loading...</div>;
     }
 
-    const { nameProduct, price, image } = post;
+    const { nameProduct, price, image, likes } = post;
 
     const handleHeartClick = () => {
-        setHeartColor(heartColor === 'none' ? 'red' : 'none');
+        if (!sellerLogged) {
+            navigate('/account/login');
+            return;
+        }
+
+        // Crear una instancia de Like
+        const newLike = new Like({ seller: sellerLogged, date: new Date() });
+
+        const existingLike = likes.searchNode(newLike);
+        if (existingLike) {
+            likes.delete(existingLike.getData());
+            setHeartColor('none');
+        } else {
+            likes.putAtEnd(newLike);
+            setHeartColor('red');
+        }
+
+        dispatch(addLike(post.likes));
     };
 
     const handleCartClick = () => {
-        if(!userLogged){
+        if (!userLogged) {
             navigate('/account/login');
         }
-    }
+    };
 
     const handleSetPost = () => {
         dispatch(setCurrentPost(post));
-    }
+    };
 
     const toggleModal = () => {
         const newState = !modalSeller;
         dispatch(setModalSeller(newState));
-    }
+    };
 
     return (
         <div className="border border-slate-500 w-80 p-6 shadow-lg rounded-xl bg-orange-100">
             <div className="flex flex-col items-start">
-                
-
                 <img
                     src={`/img/${image}.png`}
                     alt={`${nameProduct} image`}
@@ -83,21 +99,12 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
 
                     <div className="flex flex-col ml-2">
                         <h3 className="text-2xl font-bold cursor-pointer">{nameProduct}</h3>
-                        
                     </div>
                 </div>
 
                 <p className="font-black text-4xl text-amber-500 bottom-0">
                     {formatMoney(price)}
                 </p>     
-
-
-                {/* <button 
-                    type="button"
-                    className="bg-teal-600 hover:bg-teal-800 text-white w-full mt-5 p-3 uppercase rounded-2xl font-bold"
-                >
-                    Add to Cart
-                </button> */}
             </div>
         </div>
     )

@@ -7,12 +7,12 @@ import { DoubleList } from "../own.structures/linked.lists/list/DoubleList";
 
 export class Seller extends Person {
     
-    private admin: boolean;
-    private postList: DoubleList<Post>;
-    private contactList: DoubleList<Seller>;
-    private chatList: DoubleList<Chat>;
-    private requestReceivedList: DoubleList<Request>;
-    private requestSentList: DoubleList<Request>;
+    admin: boolean;
+    postList: DoubleList<Post> | undefined;
+    contactList: DoubleList<Seller> | undefined;
+    chatList: DoubleList<Chat> | undefined;
+    requestReceivedList: DoubleList<Request> | undefined;
+    requestSentList: DoubleList<Request> | undefined;
 
     public constructor({name, lastName, ID, address, userName, password, admin}: ISeller){
         super({name, lastName, ID, address, userName, password});
@@ -24,7 +24,7 @@ export class Seller extends Person {
         this.postList = new DoubleList();
     }
 
-    public getPostList(): DoubleList<Post> {
+    public getPostList(): DoubleList<Post> | undefined {
         return this.postList;
     }
 
@@ -32,7 +32,7 @@ export class Seller extends Person {
         this.postList = postList;
     }
 
-    public getContactList(): DoubleList<Seller> {
+    public getContactList(): DoubleList<Seller> | undefined {
         return this.contactList;
     }
 
@@ -40,7 +40,7 @@ export class Seller extends Person {
         this.contactList = contactList;
     }
 
-    public getChatList(): DoubleList<Chat> {
+    public getChatList(): DoubleList<Chat> | undefined  {
         return this.chatList;
     }
 
@@ -48,7 +48,7 @@ export class Seller extends Person {
         this.chatList = chatList;
     }
 
-    public getRequestReceivedList(): DoubleList<Request> {
+    public getRequestReceivedList(): DoubleList<Request> | undefined {
         return this.requestReceivedList;
     }
 
@@ -56,7 +56,7 @@ export class Seller extends Person {
         this.requestReceivedList = requestReceivedList;
     }
 
-    public getRequestSentList(): DoubleList<Request> {
+    public getRequestSentList(): DoubleList<Request> | undefined {
         return this.requestSentList;
     }
 
@@ -82,11 +82,11 @@ export class Seller extends Person {
         return {
             ...personJSON, // Incluye las propiedades de Person en el objeto JSON final
             admin: this.admin,
-            postList: this.postList.toJSON(),
-            contactList: this.contactList.toJSON(),
-            chatList: this.chatList.toJSON(),
-            requestReceivedList: this.requestReceivedList.toJSON(),
-            requestSentList: this.requestSentList.toJSON()
+            postList: this.postList?.toJSON() ?? {},
+            contactList: this.contactList?.toJSON() ?? {},
+            chatList: this.chatList?.toJSON() ?? {},
+            requestReceivedList: this.requestReceivedList?.toJSON() ?? {},
+            requestSentList: this.requestSentList?.toJSON() ?? {}
         };
     }
 }
