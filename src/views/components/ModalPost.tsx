@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setModalSeller, selectModalSeller } from "../../redux/features/seller/seller.slice";
 import { selectCurrentPost } from "../../redux/features/post/post.slice";
 
+
+/**
+ * Component representing a modal for displaying product details.
+ * @returns {JSX.Element} The ModalPost component.
+ */
 export default function ModalPost() {
 
     const dispatch = useDispatch();

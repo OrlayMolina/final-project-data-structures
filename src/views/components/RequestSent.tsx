@@ -5,6 +5,10 @@ import { useSelector } from "react-redux"
 import { Request } from "../../classes.typescript/models/Request"
 import Asking from "./Asking"
 
+/**
+ * Component to display requests sent by the seller.
+ * @returns {JSX.Element} The RequestSent component.
+ */
 export default function RequestSent() {
     const seller  : Seller = useSelector(selectSellerLogged);
     const requestList: DoubleList<Request> = seller.getRequestSentList();

@@ -3,6 +3,10 @@ import Post from "../../redux/features/post/components/Post";
 import { IPost } from '../../classes.typescript/interfaces/Post.type';
 import { useSelector } from "react-redux";
 
+/**
+ * Component for displaying a list of posts.
+ * @returns {JSX.Element} The Posts component.
+ */
 export default function Posts() {
 
     const postList = useSelector(selectPostList);

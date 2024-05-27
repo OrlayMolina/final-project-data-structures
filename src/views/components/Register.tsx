@@ -5,6 +5,10 @@ import { useAuth } from "../../hooks/useAuth";
 import Alert from "./Alert";
 import { Link } from "react-router-dom";
 
+/**
+ * Component for user registration.
+ * @returns {JSX.Element} The Register component.
+ */
 function Register() {
   const nameRef: RefObject<HTMLInputElement> = createRef();
   const lastnameRef: RefObject<HTMLInputElement> = createRef();

@@ -5,6 +5,11 @@ import { Request } from '../../classes.typescript/models/Request';
 import { DoubleList } from '../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { IRequest } from '../../classes.typescript/interfaces/Request.type';
 
+/**
+ * Component to render a suggestion for contacting a seller.
+ * @param {Seller | null} contact - The seller to display as a suggestion.
+ * @returns {JSX.Element} The Suggestions component.
+ */
 export default function Suggestions({ contact }: {contact: Seller | null}):JSX.Element {
 
     const dispatch = useDispatch();

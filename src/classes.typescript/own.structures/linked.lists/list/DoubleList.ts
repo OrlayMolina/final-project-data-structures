@@ -1,11 +1,17 @@
 import { DoubleNode } from "./DoubleNode";
 import { IteratorDoubleList } from "./IteratorDoubleList";
 
+/**
+ * Represents a doubly linked list.
+ */
 export class DoubleList<T> implements Iterable<T>{
     private firstNode: DoubleNode<T> | null;
     private lastNode: DoubleNode<T> | null;
     private size: number;
 
+    /**
+     * Creates an instance of DoubleList.
+     */
     public constructor(){
         this.firstNode = null;
         this.lastNode = null;
@@ -14,15 +20,15 @@ export class DoubleList<T> implements Iterable<T>{
 
     /**
      * Provides an iterator for iterating over the elements of the list.
-     * @returns {Iterator<T>} An iterator object that allows iteration over the elements of the list.
+     * @returns An iterator object that allows iteration over the elements of the list.
      */
     [Symbol.iterator](): Iterator<T> {
         return new IteratorDoubleList(this.firstNode);
     }
 
     /**
-     * Adds a new Node with the specified data to the front of the List.
-     * @param data 
+     * Adds a new node with the specified data to the front of the list.
+     * @param data The data to be added.
      */
     public putInFront(data: T): void {
         const newNode: DoubleNode<T> = new DoubleNode(data);
@@ -36,6 +42,10 @@ export class DoubleList<T> implements Iterable<T>{
         this.size++;
     }
 
+    /**
+     * Adds a new node with the specified data to the end of the list.
+     * @param data The data to be added.
+     */
     public putAtEnd(data: T): void {
         const newNode: DoubleNode<T> = new DoubleNode(data);
         if(this.isEmpty()){
@@ -50,9 +60,9 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
-     * 
-     * @param index 
-     * @param data 
+     * Adds a new node with the specified data at the specified index in the list.
+     * @param index The index at which to add the data.
+     * @param data The data to be added.
      */
     public add(index: number, data: T): void{
         if(this.validIndex(index)){
@@ -73,7 +83,7 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
-     * method that deletes the DoubleList
+     * Deletes the entire list.
      */
     public deleteList(): void {
         this.firstNode = null;
@@ -81,6 +91,11 @@ export class DoubleList<T> implements Iterable<T>{
         this.size = 0;
     }
 
+    /**
+     * Retrieves the value of the node at the specified index in the list.
+     * @param index The index of the node.
+     * @returns The value of the node, or null if the index is out of bounds.
+     */
     public getNodeValue(index: number): T | null {
         let temporalNode: DoubleNode<T> | null = this.getNode(index);
         let counter: number = 0;
@@ -102,9 +117,10 @@ export class DoubleList<T> implements Iterable<T>{
     }
     
     /**
-     * 
-     * @param index 
-     * @returns 
+     * Checks if the index is within the bounds of the list.
+     * @param index The index to check.
+     * @returns True if the index is valid, false otherwise.
+     * @throws {Error} If the index is out of bounds.
      */
     public validIndex(index: number): boolean {
 
@@ -116,15 +132,15 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
-     * Check if the Stack is empty
-     * @returns true if the Stack is empty, false otherwise
+     * Checks if the list is empty.
+     * @returns True if the list is empty, false otherwise.
      */
     public isEmpty(): boolean {
         return this.size === 0;
     }
 
     /**
-     * Print the List
+     * Prints the elements of the list.
      */
     public printList(): void {
         let auxNode: DoubleNode<T> | null = this.firstNode;
@@ -136,7 +152,10 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
-     * Print the List in reverse
+     * Deletes the node containing the specified data from the list.
+     * @param nodeValue The data to delete.
+     * @returns The deleted data.
+     * @throws {Error} If the node containing the data is not found.
      */
     public printReverseList(): void {
         let auxNode: DoubleNode<T> | null = this.lastNode
@@ -147,6 +166,12 @@ export class DoubleList<T> implements Iterable<T>{
         console.log("");
     }
 
+      /**
+ * Deletes the node containing the specified data from the list.
+ * @param nodeValue The data to delete.
+ * @returns The deleted data.
+ * @throws {Error} If the node containing the data is not found.
+ */
     
     public delete(nodeValue: T): T {
         let node: DoubleNode<T> | null = this.searchNode(nodeValue);
@@ -177,10 +202,9 @@ export class DoubleList<T> implements Iterable<T>{
         throw new Error("The node was not found");
     }
 
-    /**
-     * Removes and returns the first element from the list.
-     * 
-     * @returns The value of the removed element.
+     /**
+     * Deletes the first node in the list and returns its value.
+     * @returns The value of the deleted node.
      * @throws {Error} If the list is empty.
      */
     public deleteFirst(): T {
@@ -204,6 +228,11 @@ export class DoubleList<T> implements Iterable<T>{
         throw new Error("The list is empty");
     }
 
+    /**
+     * Deletes the last node in the list and returns its value.
+     * @returns The value of the deleted node.
+     * @throws {Error} If the list is empty.
+     */
     public deleteLast(): T {
         if (!this.isEmpty()) {
             if (this.lastNode) {
@@ -225,6 +254,12 @@ export class DoubleList<T> implements Iterable<T>{
         throw new Error("The list is empty");
     }
 
+
+    /**
+     * Retrieves the node at the specified index in the list.
+     * @param index The index of the node to retrieve.
+     * @returns The node at the specified index, or null if the index is out of bounds.
+     */
     public getNode(index: number): DoubleNode<T> | null {
         if(index >= 0 && index >= this.size){
             let node: DoubleNode<T> | null = this.firstNode;
@@ -241,9 +276,8 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
-     * Searches for a node with the specified data in the list.
-     * 
-     * @param data The data to search for in the nodes.
+     * Searches for a node containing the specified data in the list.
+     * @param data The data to search for.
      * @returns The node containing the data, or null if not found.
      */
     public searchNode(data: T): DoubleNode<T> | null {
@@ -260,10 +294,9 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
-     * Modifies the data of a node at the specified index in the list.
-     * 
+     * Modifies the data of the node at the specified index in the list.
      * @param index The index of the node to modify.
-     * @param newdata The new data to assign to the node.
+     * @param newData The new data to assign to the node.
      */
     public modifyNode(index: number, newdata: T): void{
         if(this.validIndex(index)){
@@ -272,6 +305,11 @@ export class DoubleList<T> implements Iterable<T>{
         }
     }
 
+    /**
+     * Retrieves the position of the node containing the specified data in the list.
+     * @param data The data to search for.
+     * @returns The position of the node containing the data, or -1 if not found.
+     */
     public getNodePosition(data: T): number {
         let i: number = 0;
 
@@ -285,6 +323,11 @@ export class DoubleList<T> implements Iterable<T>{
         return -1;
     }
 
+    /**
+     * Retrieves the data at the specified index in the list.
+     * @param index The index of the data to retrieve.
+     * @returns The data at the specified index, or null if the index is out of bounds.
+     */
     public get(index: number): T | null {
         if(this.validIndex(index)){
             const n: DoubleNode<T> | null = this.getNode(index);
@@ -298,7 +341,7 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
-     * Converts the DoubleList object to a JSON object.
+     * Converts the DoubleList object to a JSON representation.
      * @returns JSON representation of the DoubleList object.
      */
     public toJSON(): any {

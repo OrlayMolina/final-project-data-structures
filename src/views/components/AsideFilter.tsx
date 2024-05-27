@@ -7,6 +7,12 @@ interface CategoriesProps {
     onClickCategory: (categorySelected: CategoryPost | null) => void;
 }
 
+/**
+ * AsideFilter component displaying category filter option.
+ * @param {CategoriesProps} category - The current category.
+ * @param {CategoriesProps} onClickCategory - Function to handle category selection.
+ * @returns {JSX.Element} The AsideFilter component.
+ */
 export default function AsideFilter({ category, onClickCategory }: CategoriesProps): JSX.Element  {
 
     const currentCategory = useSelector(selectPostCategory);

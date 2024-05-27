@@ -3,6 +3,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 
+/**
+ * Component representing the main layout for the wall post page.
+ * Renders the header, sidebar, main content, and footer.
+ * @returns {JSX.Element} The WallPost component.
+ */
 function WallPost() {
   return (
     <>

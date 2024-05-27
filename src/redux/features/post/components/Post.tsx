@@ -9,7 +9,7 @@ import { IPost } from '../../../../classes.typescript/interfaces/Post.type';
 import { formatMoney } from '../../../../classes.typescript/helpers/utilities';
 import { Like } from '../../../../classes.typescript/models/Like';
 
-export default function Post({ post }: { post: IPost | null }): JSX.Element {
+export default function Post({ post }: {post: IPost | null}):JSX.Element {
     const dispatch = useDispatch();
     const [heartColor, setHeartColor] = useState<'none' | 'red'>('none');
     const userLogged = useSelector(selectUserLogged);

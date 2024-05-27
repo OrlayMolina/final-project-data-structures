@@ -23,6 +23,11 @@ const customStyles: CustomProps = {
 
 Modal.setAppElement('#root');
 
+/**
+ * Component representing the general layout for the application.
+ * Manages floating chat behavior based on scroll position.
+ * @returns {JSX.Element} The Layout component.
+ */
 export default function Layout(): JSX.Element {
 
     const modal = useSelector(selectModalSeller);

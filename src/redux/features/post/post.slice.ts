@@ -6,6 +6,7 @@ import { Like } from '../../../classes.typescript/models/Like';
 import { Comment } from "../../../classes.typescript/models/Comment";
 import { IPost } from "../../../classes.typescript/interfaces/Post.type";
 
+// Define the shape of the posts slice state
 const initialState: PostsState = {
     status: 'idle',
     currentPost: null,
@@ -18,7 +19,7 @@ const initialState: PostsState = {
     comments: new DoubleList<Comment>(),
     likes: new DoubleList<Like>()
 }
-
+// Create a Redux slice for posts
 const postSlice = createSlice({
     name: 'post',
     initialState,
@@ -45,8 +46,11 @@ const postSlice = createSlice({
     }
 });
 
+// Extract action creators and reducer from the post slice
 export const { setCurrentPost, setPost, addComment, addLike } = postSlice.actions;
 
+// Selector to get the current post from the state
 export const selectCurrentPost = (state: { post: PostsState }) => state.post.currentPost;
 
+// Export the reducer function for configuring the Redux store
 export default postSlice.reducer;

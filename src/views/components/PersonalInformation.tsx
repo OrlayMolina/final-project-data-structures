@@ -4,7 +4,7 @@ import { createRef, RefObject, useState } from "react";
 import Alert from "./Alert";
 import { useAuth } from "../../hooks/useAuth";
 
-export default function PersonalInformation() {
+    export default function PersonalInformation() {
 
     const nameRef: RefObject<HTMLInputElement> = createRef();
     const lastnameRef: RefObject<HTMLInputElement> = createRef();

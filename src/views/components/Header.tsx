@@ -12,6 +12,10 @@ const navigation = [
     { name: 'Contact Suggestion', to: '/contact-suggestions', current: false },
 ];
 
+/**
+ * Header component displaying navigation links and user actions.
+ * @returns {JSX.Element} The Header component.
+ */
 export default function Header(): JSX.Element {
 
   const dispatch = useDispatch();

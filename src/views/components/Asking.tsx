@@ -1,5 +1,12 @@
 import { Request } from "../../classes.typescript/models/Request"
 
+
+/**
+ * Asking component displaying request information.
+ * @param {Object} props - The component props.
+ * @param {Request | null} props.request - The request object.
+ * @returns {JSX.Element} The Asking component.
+ */
 export default function Asking({ request }: {request: Request | null}):JSX.Element {
 
     const { accept} = request;

@@ -5,6 +5,7 @@ import { ISocialMediaSellersState } from "./social.media.type";
 import { Seller } from '../../../classes.typescript/models/Sellers';
 import { Post } from '../../../classes.typescript/models/Post';
 
+// Define the initial state for the social media sellers
 const initialState: ISocialMediaSellersState = {
     status: 'idle',
     loginErrors: [],
