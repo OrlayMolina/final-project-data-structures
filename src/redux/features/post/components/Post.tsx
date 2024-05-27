@@ -7,6 +7,11 @@ import { selectModalSeller, setModalSeller } from '../../seller/seller.slice';
 import { IPost } from '../../../../classes.typescript/interfaces/Post.type';
 import { formatMoney } from '../../../../classes.typescript/helpers/utilities';
 
+/**
+ * Functional component representing a single post item.
+ * @param {IPost | null} post - The post object containing details of the item.
+ * @returns {JSX.Element} - The Post component.
+ */
 export default function Post({ post }: {post: IPost | null}):JSX.Element {
     const dispatch = useDispatch();
     //Para la creacion de una constante [nombrevariable, metodoModificador]

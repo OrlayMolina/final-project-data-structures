@@ -1,37 +1,61 @@
+/**
+ * Represents a node in a doubly linked list.
+ */
 export class DoubleNode<T> {
 
     private nextNode: DoubleNode<T> | null;
     private previousNode: DoubleNode<T> | null;
     private nodeValue: T;
 
-    public constructor(nodeValue: T, nextNode?: DoubleNode<T> | null, previousNode?: DoubleNode<T> | null){
-        this.nodeValue = nodeValue;
-        this.nextNode = nextNode || null;
-        this.previousNode = previousNode || null;
-    }
+   /**
+     * Creates an instance of DoubleNode.
+     * @param nodeValue The value to be stored in the node.
+     * @param nextNode Reference to the next node in the list.
+     * @param previousNode Reference to the previous node in the list.
+     */
+   public constructor(nodeValue: T, nextNode?: DoubleNode<T> | null, previousNode?: DoubleNode<T> | null){
+    this.nodeValue = nodeValue;
+    this.nextNode = nextNode || null;
+    this.previousNode = previousNode || null;
+}
 
-    public setNextNode(nextNode: DoubleNode<T> | null): void{
-        this.nextNode = nextNode;
-    }
+/**
+ * Sets the next node in the list.
+ * @param nextNode The next node to be set.
+ */
+public setNextNode(nextNode: DoubleNode<T> | null): void{
+    this.nextNode = nextNode;
+}
 
-    public getNextNode(): DoubleNode<T> | null {
-        return this.nextNode;
-    }
+/**
+ * Retrieves the next node in the list.
+ * @returns The next node in the list, or null if there is no next node.
+ */
+public getNextNode(): DoubleNode<T> | null {
+    return this.nextNode;
+}
 
-    public getData(): T {
-        return this.nodeValue;
-    }
+/**
+ * Retrieves the value stored in the node.
+ * @returns The value stored in the node.
+ */
+public getData(): T {
+    return this.nodeValue;
+}
 
-    public setData(nodeValue: T): void {
-        this.nodeValue = nodeValue;
-    }
+/**
+ * Sets the value to be stored in the node.
+ * @param nodeValue The value to be set.
+ */
+public setData(nodeValue: T): void {
+    this.nodeValue = nodeValue;
+}
 
-    public setPreviousNode(previuosNode: DoubleNode<T> | null): void {
-        this.previousNode = previuosNode;
-    }
-
-    public getPreviousNode():DoubleNode<T> | null {
-        return this.previousNode;
-    }
-
+/**
+ * Sets the previous node in the list.
+ * @param previousNode The previous node to be set.
+ */
+public setPreviousNode(previousNode: DoubleNode<T> | null): void {
+    this.previousNode = previousNode;
+}
 }

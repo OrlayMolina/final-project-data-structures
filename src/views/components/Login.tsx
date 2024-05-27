@@ -6,6 +6,10 @@ import { createRef, RefObject } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { DataLogin } from "../../classes.typescript/interfaces/CustomPropsModal";
 
+/**
+ * Login component for user authentication.
+ * @returns {JSX.Element} The Login component.
+ */
 export default function Login() {
     const userNameRef: RefObject<HTMLInputElement> = createRef();
     const passwordRef: RefObject<HTMLInputElement> = createRef();

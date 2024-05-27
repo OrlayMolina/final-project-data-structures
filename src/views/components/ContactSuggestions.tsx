@@ -6,6 +6,10 @@ import Header from "./Header"
 import Footer from "./Footer"
 import Suggestions from "./Suggestions"
 
+/**
+ * ContactSuggestions component displaying a list of suggested contacts.
+ * @returns {JSX.Element} The ContactSuggestions component.
+ */
 export default function ContactSuggestions() {
     const contactSuggestions: DoubleList<Seller> = useSelector(selectSellerList );
 

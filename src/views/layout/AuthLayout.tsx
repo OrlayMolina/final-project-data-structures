@@ -4,6 +4,12 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { FiMessageSquare } from "react-icons/fi";
 
+
+/**
+ * Component representing the layout for authentication pages.
+ * Manages floating chat behavior based on scroll position.
+ * @returns {JSX.Element} The AuthLayout component.
+ */
 export default function AuthLayout(): JSX.Element {
 
     const [isChatFloating, setIsChatFloating] = useState(false);

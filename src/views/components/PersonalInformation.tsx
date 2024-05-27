@@ -5,6 +5,11 @@
     import Alert from "./Alert";
     import { useAuth } from "../../hooks/useAuth";
 
+
+    /**
+    * Component for displaying and updating personal information.
+    * @returns {JSX.Element} The PersonalInformation component.
+    */
     export default function PersonalInformation() {
 
         const nameRef: RefObject<HTMLInputElement> = createRef();

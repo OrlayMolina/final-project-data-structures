@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 import "../style/Aside.css";
 import { Seller } from "../../classes.typescript/models/Sellers";
 
+/**
+ * Aside component displaying seller-specific information and navigation links.
+ * Redirects to login page if user is not logged in.
+ * @returns {JSX.Element} The Aside component.
+ */
 export default function Aside() {
 
     const navigate = useNavigate();

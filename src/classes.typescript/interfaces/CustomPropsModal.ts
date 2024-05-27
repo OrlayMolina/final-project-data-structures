@@ -1,3 +1,6 @@
+/**
+ * Defines the structure of custom properties for styling or positioning components.
+ */
 export interface CustomProps {
     content: {
         top?: string | number;
@@ -9,11 +12,17 @@ export interface CustomProps {
     }
 }
 
+/**
+ * Defines the structure of data required for user login.
+ */
 export interface DataLogin {
     username: string | undefined;
     password: string | undefined;
 }
 
+/**
+ * Defines the structure of data required for user registration.
+ */
 export interface DataRegister {
     name: string | undefined;
     lastname: string | undefined;

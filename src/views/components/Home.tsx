@@ -1,6 +1,11 @@
 import Data from "../../data/Data.component";
 import Posts from '../../views/components/Posts';
 
+
+/**
+ * Home component displaying latest posts.
+ * @returns {JSX.Element} The Home component.
+ */
 export default function Home() {
     return (
         <div className="bg-gray-100 py-10 px-4 md:px-6 lg:px-8">

@@ -8,6 +8,14 @@ import { DataLogin } from "../classes.typescript/interfaces/CustomPropsModal";
 
 type Middleware = 'guest' | 'auth' | 'admin';
 
+/**
+ * Custom hook for managing user authentication.
+ * It handles user login, logout, and authentication status.
+ * @param {Object} options - Options object containing middleware and redirect URL.
+ * @param {Middleware} options.middleware - The required authentication level.
+ * @param {string} options.url - The URL to redirect after authentication.
+ * @returns {Object} An object containing user authentication state and functions.
+ */
 export const useAuth = ({ middleware, url }: { middleware: Middleware, url: string }) => {
     const dispatch = useDispatch();
     const userLogged = useSelector(selectUserLogged);
@@ -15,6 +23,11 @@ export const useAuth = ({ middleware, url }: { middleware: Middleware, url: stri
     const navigate = useNavigate();
     const errors = useSelector(selectLoginErrors);
 
+    /**
+     * Function to simulate user login.
+     * @param {DataLogin} datos - User login data.
+     * @returns {Promise<void>}
+     */
     const login = async (datos: DataLogin) => {
         // Lógica de autenticación simulada sin llamadas API reales
         let foundSeller: Seller | null = null;
@@ -39,6 +52,9 @@ export const useAuth = ({ middleware, url }: { middleware: Middleware, url: stri
         }
     };
 
+    /**
+     * Function to handle user logout.
+     */
     const logout = () => {
         dispatch(setUserLogged(false));
         navigate(url);

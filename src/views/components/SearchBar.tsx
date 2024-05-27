@@ -1,5 +1,10 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
+
+/**
+ * Component for the search bar.
+ * @returns {JSX.Element} The SearchBar component.
+ */
 export default function SearchBar() {
     return (
         <div className='bg-gray-800 text-white sticky top-0'>

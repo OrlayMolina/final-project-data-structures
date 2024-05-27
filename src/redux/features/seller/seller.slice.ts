@@ -6,6 +6,7 @@ import { Seller } from '../../../classes.typescript/models/Sellers';
 import { Chat } from '../../../classes.typescript/models/Chat';
 import { Request } from '../../../classes.typescript/models/Request';
 
+// Define the initial state for the seller slice
 const initialState: SellerState = {
     status: 'idle',
     currentSeller: null,

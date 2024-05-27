@@ -14,8 +14,10 @@ import { Like } from "../classes.typescript/models/Like";
 
 
 /**
- * Component to initialize data in the application.
- * Initializes categories, posts, and sellers.
+ * Functional component that initializes and loads data into the application.
+ * This component utilizes the useEffect hook to execute logic once the component has mounted.
+ * It creates and loads instances of categories, posts, and sellers into the application state using Redux dispatch.
+ * @returns {JSX.Element} The Data component.
  */
 export default function Data(): JSX.Element {
     const dispatch = useDispatch();

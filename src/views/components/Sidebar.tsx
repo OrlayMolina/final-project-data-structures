@@ -3,6 +3,10 @@ import { CategoryPost } from "../../classes.typescript/models/CategoryPost";
 import AsideFilter from "../components/AsideFilter";
 import { setPostCategory, selectAllCategories } from "../../redux/features/social.media/social.media.slice";
 
+/**
+ * Component for the sidebar.
+ * @returns {JSX.Element} The Sidebar component.
+ */
 export default function Sidebar() {
 
     const dispatch = useDispatch();
