@@ -8,6 +8,7 @@ import Home from './views/components/Home';
 import PersonalInformation from './views/components/PersonalInformation';
 import ContactSuggestions from './views/components/ContactSuggestions';
 import RequestSent from './views/components/RequestSent';
+import YourPost from './views/components/YourPost';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path:'/wallpost/request-sent',
                 element: <RequestSent />
+            },
+            {
+                path: '/wallpost/yourposts',
+                element: <YourPost />
             }
             
         ]

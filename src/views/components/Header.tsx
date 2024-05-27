@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 const navigation = [
     { name: 'WallPost', to: '/wallpost', current: true },
-    { name: 'Your Posts', to: '/yourposts', current: false },
+    { name: 'Your Posts', to: '/wallpost/yourposts', current: false },
     { name: 'Contact Suggestion', to: '/contact-suggestions', current: false },
 ];
 
