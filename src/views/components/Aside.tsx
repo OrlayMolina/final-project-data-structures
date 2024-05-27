@@ -33,6 +33,7 @@ export default function Aside() {
                 <li><Link to="#">Contacts</Link></li>
                 <li><Link to="/wallpost/request-sent">Request Sent</Link></li>
                 <li><Link to="#">Request Received</Link></li>
+                <li><Link to="/wallpost/create-post">Create Post</Link></li>
                 <li><Link to="#">Chats</Link></li>
                 <li><Link to="#">Statistics</Link></li>
             </ul>

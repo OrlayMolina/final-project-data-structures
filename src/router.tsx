@@ -7,6 +7,7 @@ import Register from './views/components/Register';
 import Home from './views/components/Home';
 import PersonalInformation from './views/components/PersonalInformation';
 import ContactSuggestions from './views/components/ContactSuggestions';
+import FormPost from './views/components/FormPost';
 import RequestSent from './views/components/RequestSent';
 import YourPost from './views/components/YourPost';
 
@@ -34,8 +35,8 @@ const router = createBrowserRouter([
                 element: <RequestSent />
             },
             {
-                path: '/wallpost/yourposts',
-                element: <YourPost />
+                path: '/wallpost/create-post',
+                element: <FormPost />
             }
             
         ]
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
     {
         path: '/contact-suggestions',
         element: <ContactSuggestions/>
+    },
+    {
+        path: '/yourposts',
+        element: <YourPost/>
     },
     {
         path: '/account',
