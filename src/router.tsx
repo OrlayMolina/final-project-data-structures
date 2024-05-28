@@ -5,8 +5,12 @@ import AuthLayout from './views/layout/AuthLayout';
 import Login from './views/components/Login';
 import Register from './views/components/Register';
 import Home from './views/components/Home';
+import Contacts from './views/components/Contacts';
+import Chats from './views/components/Chats';
+import Stats from './views/components/Stats';
 import PersonalInformation from './views/components/PersonalInformation';
 import ContactSuggestions from './views/components/ContactSuggestions';
+import RequestReceived from './views/components/RequestReceived';
 import FormPost from './views/components/FormPost';
 import RequestSent from './views/components/RequestSent';
 import YourPost from './views/components/YourPost';
@@ -37,6 +41,22 @@ const router = createBrowserRouter([
             {
                 path: '/wallpost/create-post',
                 element: <FormPost />
+            },
+            {
+                path: '/wallpost/request-received',
+                element: <RequestReceived />
+            },
+            {
+                path: '/wallpost/contacts',
+                element: <Contacts />
+            },
+            {
+                path: '/wallpost/chats',
+                element: <Chats />
+            },
+            {
+                path: '/wallpost/stats',
+                element: <Stats />
             }
             
         ]

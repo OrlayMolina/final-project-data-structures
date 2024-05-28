@@ -30,12 +30,12 @@ export default function Aside() {
             <h1 className="aside-title">{sellerLogged.getName() +' '+ sellerLogged.getLastName()}</h1>
             <ul className="aside-menu text-lg">
                 <li><Link to="/wallpost">Personal Information</Link></li>
-                <li><Link to="#">Contacts</Link></li>
+                <li><Link to="/wallpost/contacts">Contacts</Link></li>
                 <li><Link to="/wallpost/request-sent">Request Sent</Link></li>
-                <li><Link to="#">Request Received</Link></li>
+                <li><Link to="/wallpost/request-received">Request Received</Link></li>
                 <li><Link to="/wallpost/create-post">Create Post</Link></li>
-                <li><Link to="#">Chats</Link></li>
-                <li><Link to="#">Statistics</Link></li>
+                <li><Link to="/wallpost/chats">Chats</Link></li>
+                <li><Link to="/wallpost/stats">Statistics</Link></li>
             </ul>
         </div>
     );

@@ -5,9 +5,9 @@ import { IteratorDoubleList } from "./IteratorDoubleList";
  * Represents a doubly linked list.
  */
 export class DoubleList<T> implements Iterable<T>{
-    private firstNode: DoubleNode<T> | null;
-    private lastNode: DoubleNode<T> | null;
-    private size: number;
+    firstNode: DoubleNode<T> | null;
+    lastNode: DoubleNode<T> | null;
+    size: number;
 
     /**
      * Creates an instance of DoubleList.
@@ -24,6 +24,14 @@ export class DoubleList<T> implements Iterable<T>{
      */
     [Symbol.iterator](): Iterator<T> {
         return new IteratorDoubleList(this.firstNode);
+    }
+
+    /**
+     * Retrieves the size of the list.
+     * @returns The size of the list.
+     */
+    public getSize(): number {
+        return this.size;
     }
 
     /**

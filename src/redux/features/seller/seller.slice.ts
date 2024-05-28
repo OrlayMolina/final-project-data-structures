@@ -62,6 +62,14 @@ const sellerSlice = createSlice({
         setRequestReceivedList: (state, action: PayloadAction<DoubleList<Request>>) => {
             state.requestReceivedList = action.payload;
         }, 
+        addRequestReceived: (state, action: PayloadAction<Request>) => {
+            const updatedRequestReceivedList = new DoubleList<Request>();
+            if(state.requestReceivedList){
+                state.requestReceivedList.forEach(request => updatedRequestReceivedList.putInFront(request));
+            }
+            updatedRequestReceivedList.putInFront(action.payload);
+            state.requestReceivedList = updatedRequestReceivedList;
+        },
         setRequestSentList: (state, action: PayloadAction<DoubleList<Request>>) => {
             state.requestSentList = action.payload;
         },
@@ -121,6 +129,7 @@ export const {
     setContactList, 
     setChatList, 
     setRequestReceivedList, 
+    addRequestReceived,
     setRequestSentList, 
     addRequestSent,
     setName, 

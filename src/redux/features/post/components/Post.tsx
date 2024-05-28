@@ -60,7 +60,7 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
     };
 
     return (
-        <div className="border border-slate-500 w-80 p-6 shadow-lg rounded-xl bg-orange-100">
+        <div className="border border-slate-500 w-80 p-6 shadow-lg rounded-xl bg-orange-100" onMouseEnter={handleSetPost}>
             <div className="flex flex-col items-start">
                 <img
                     src={`/img/${image}.png`}

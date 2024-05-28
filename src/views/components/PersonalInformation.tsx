@@ -1,10 +1,14 @@
 import { DataRegister } from "../../classes.typescript/interfaces/CustomPropsModal";
+import { selectSellerLogged, setSellerLogged } from "../../redux/features/social.media/social.media.slice";
+import { useSelector } from "react-redux";
 import MessageConfirmation from "./MessageConfirmation";
-import { createRef, RefObject, useState } from "react";
+import { createRef, RefObject, useState, useEffect } from "react";
 import Alert from "./Alert";
 import { useAuth } from "../../hooks/useAuth";
 
     export default function PersonalInformation() {
+
+    const userLogged = useSelector(selectSellerLogged);
 
     const nameRef: RefObject<HTMLInputElement> = createRef();
     const lastnameRef: RefObject<HTMLInputElement> = createRef();
@@ -17,6 +21,16 @@ import { useAuth } from "../../hooks/useAuth";
     const [errors, setErrors] = useState<string[]>([]);
     const [success, setSuccess] = useState(false);
     const { register } = useAuth({middleware: 'auth', url: '/wallpost'});
+
+    useEffect(() => {
+        if (userLogged) {
+            if (nameRef.current) nameRef.current.value = userLogged.name || '';
+            if (lastnameRef.current) lastnameRef.current.value = userLogged.lastName || '';
+            if (IDRef.current) IDRef.current.value = userLogged.ID || '';
+            if (addressRef.current) addressRef.current.value = userLogged.address || '';
+            if (usernameRef.current) usernameRef.current.value = userLogged.userName || '';
+        }
+    }, [userLogged]);
 
     const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();

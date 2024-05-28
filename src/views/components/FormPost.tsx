@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { PostState } from '../../classes.typescript/enum/PostState';
 import { DoubleList } from '../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { addPost } from '../../redux/features/seller/seller.slice';
+import { addPosts } from '../../redux/features/social.media/social.media.slice';
 import { Post } from '../../classes.typescript/models/Post';
 import { Like } from '../../classes.typescript/models/Like';
 import { Comment } from '../../classes.typescript/models/Comment';
@@ -31,6 +32,7 @@ const FormPost = () => {
         });
 
         dispatch(addPost(newPost));
+        dispatch(addPosts(newPost));
     };
 
     return (

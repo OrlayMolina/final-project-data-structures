@@ -1,4 +1,4 @@
-import { selectPostList } from "../../redux/features/social.media/social.media.slice";
+import { selectPostLists } from "../../redux/features/social.media/social.media.slice";
 import Post from "../../redux/features/post/components/Post";
 import { IPost } from '../../classes.typescript/interfaces/Post.type';
 import { useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
  */
 export default function Posts() {
 
-    const postList = useSelector(selectPostList);
+    const postList = useSelector(selectPostLists);
 
     return (
         <>
