@@ -23,12 +23,13 @@ export default function Data(): JSX.Element {
     const dispatch = useDispatch();
     useEffect( () => {
         const category1: CategoryPost = new CategoryPost(1, 'APPLIANCES');
-        const category2: CategoryPost = new CategoryPost(1, 'BOOKS');
-        const category3: CategoryPost = new CategoryPost(2, 'HOME');
-        const category4: CategoryPost = new CategoryPost(3, 'TECHNOLOGY');
-        const category5: CategoryPost = new CategoryPost(4, 'SPORT');
+        const category2: CategoryPost = new CategoryPost(2, 'BOOKS');
+        const category3: CategoryPost = new CategoryPost(3, 'HOME');
+        const category4: CategoryPost = new CategoryPost(4, 'TECHNOLOGY');
+        const category5: CategoryPost = new CategoryPost(5, 'SPORT');
+        const category6: CategoryPost = new CategoryPost(6, 'CLEAR CATEGORY');
 
-        const categoryList: CategoryPost[] = [category1, category2, category3, category4, category5];
+        const categoryList: CategoryPost[] = [category1, category2, category3, category4, category5, category6];
         dispatch(setAllCategories(categoryList));
     }, [dispatch]);
 
@@ -99,7 +100,7 @@ export default function Data(): JSX.Element {
             likes: new DoubleList<Like>()
         });
 
-        const postList: DoubleList<Post> = new DoubleList<Post>();
+         const postList: DoubleList<Post> = new DoubleList<Post>();
         postList.putInFront(post1);
         postList.putInFront(post2);
         postList.putInFront(post3);
@@ -230,6 +231,17 @@ export default function Data(): JSX.Element {
         sellerList.putInFront(seller7);
         const sellerListPayload = sellerList.toJSON();
         dispatch(setSellerList(sellerListPayload));
+
+        // const comment: Comment = new Comment({
+        //     seller: seller1,
+        //     comment: 'This is a comment',
+        //     date: new Date()
+
+        // });
+
+        // const commentList = new DoubleList<Comment>();
+        // commentList.putInFront(comment);
+        // dispatch(addComment(commentList));
 
     }, [dispatch])
 

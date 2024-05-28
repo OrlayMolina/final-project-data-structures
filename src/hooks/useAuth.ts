@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Post } from "../classes.typescript/models/Post";
+import { Chat } from "../classes.typescript/models/Chat";
 import { Seller } from "../classes.typescript/models/Sellers";
-import { selectSellerList, selectLoginErrors, setLoginErrors } from "../redux/features/social.media/social.media.slice";
+import { DoubleList } from "../classes.typescript/own.structures/linked.lists/list/DoubleList";
+import { selectSellerList, selectLoginErrors, setLoginErrors, setSellerList } from "../redux/features/social.media/social.media.slice";
 import { setUserLogged, selectUserLogged, setSellerLogged } from "../redux/features/social.media/social.media.slice";
-import { DataLogin } from "../classes.typescript/interfaces/CustomPropsModal";
+import { DataLogin, DataRegister } from "../classes.typescript/interfaces/CustomPropsModal";
 
 type Middleware = 'guest' | 'auth' | 'admin';
 
@@ -22,6 +25,7 @@ export const useAuth = ({ middleware, url }: { middleware: Middleware, url: stri
     const sellerList = useSelector(selectSellerList);
     const navigate = useNavigate();
     const errors = useSelector(selectLoginErrors);
+    const [registerErrors, setRegisterErrors] = useState<string[]>([]);
 
     /**
      * Function to simulate user login.
@@ -53,10 +57,52 @@ export const useAuth = ({ middleware, url }: { middleware: Middleware, url: stri
     };
 
     /**
+     * Function to handle user registration.
+     * @param {DataLogin} datos - New seller data.
+     * @returns {Promise<void>}
+     */
+        const register = async (datos: DataRegister) => {
+            const existingSeller = sellerList.find(seller => seller.getUserName() === datos.username);
+    
+            if (existingSeller) {
+                setRegisterErrors(['Username already exists']);
+                setTimeout(() => {
+                    setRegisterErrors([]);
+                }, 3000);
+            } else {
+
+                const newSeller: Seller = new Seller({
+                    name: datos.name ?? '',
+                    lastName: datos.lastname ?? '', // Add a default value for lastName
+                    ID: datos.ID ?? '',
+                    address: datos.address ?? '', // Add a default value for address
+                    userName: datos.username ?? '',
+                    password: datos.password ?? '',
+                    admin: false,
+                    postList: new DoubleList<Post>(),
+                    contactList: new DoubleList<Seller>(),
+                    chatList: new DoubleList<Chat>(),
+                    requestReceivedList: new DoubleList<Request>(),
+                    requestSentList: new DoubleList<Request>()
+                });
+    
+                const updatedSellerList = new DoubleList<Seller>();
+                sellerList.forEach(seller => updatedSellerList.putInFront(seller));
+                updatedSellerList.putInFront(newSeller);
+    
+                dispatch(setSellerList(updatedSellerList));
+                dispatch(setSellerLogged(newSeller));
+                dispatch(setUserLogged(true));
+                navigate("/");
+            }
+        };
+
+    /**
      * Function to handle user logout.
      */
     const logout = () => {
         dispatch(setUserLogged(false));
+        dispatch(setSellerLogged(null));
         navigate(url);
     };
 
@@ -69,5 +115,5 @@ export const useAuth = ({ middleware, url }: { middleware: Middleware, url: stri
         }
     }, [middleware, url, userLogged, navigate]);
 
-    return { userLogged, errors, login, logout };
+    return { userLogged, errors, login, logout, register };
 };

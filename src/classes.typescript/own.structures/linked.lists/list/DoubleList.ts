@@ -316,6 +316,39 @@ export class DoubleList<T> implements Iterable<T>{
     }
 
     /**
+     * Finds the first element in the list that satisfies the provided testing function.
+     * @param {function} callback - Function to execute on each value in the list.
+     * @returns {T | undefined} - The first element in the list that satisfies the provided testing function. Otherwise, undefined is returned.
+     */
+    find(callback: (value: T) => boolean): T | undefined {
+        let current = this.firstNode;
+        while (current !== null) {
+            if (callback(current.getData())) {
+                return current.getData();
+            }
+            current = current.getNextNode();
+        }
+        return undefined;
+    }
+
+    /**
+     * Modifies the data of the node containing the specified data in the list.
+     * @param predicate 
+     * @returns 
+     */
+    filter(predicate: (value: T) => boolean): DoubleList<T> {
+        const result = new DoubleList<T>();
+        let currentNode = this.firstNode;
+        while (currentNode !== null) {
+            if (predicate(currentNode.getData())) {
+                result.putInFront(currentNode.getData());
+            }
+            currentNode = currentNode.getNextNode();
+        }
+        return result;
+    }
+
+    /**
      * Modifies the data of the node at the specified index in the list.
      * @param index The index of the node to modify.
      * @param newData The new data to assign to the node.

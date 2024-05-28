@@ -1,5 +1,7 @@
 import { CustomProps } from "../../classes.typescript/interfaces/CustomPropsModal";
 import { selectModalSeller } from "../../redux/features/seller/seller.slice";
+import { selectModalComments } from "../../redux/features/post/post.slice";
+import ModalComments from "../components/ModalComments";
 import Sidebar from "../components/Sidebar";
 import { FiMessageSquare } from "react-icons/fi";
 import ModalPost from "../components/ModalPost";
@@ -21,6 +23,24 @@ const customStyles: CustomProps = {
     },
 };
 
+const customStylesComments: CustomProps = {
+    content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        height: "360px",
+        width: "80%", // Adjust width
+        maxWidth: "600px", // Set a maximum width
+        padding: "20px", // Add padding
+        borderRadius: "10px", // Add border-radius for rounded corners
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Add box shadow
+        backgroundColor: "#fff", // Ensure background color is set
+    },
+};
+
 Modal.setAppElement('#root');
 
 /**
@@ -31,6 +51,7 @@ Modal.setAppElement('#root');
 export default function Layout(): JSX.Element {
 
     const modal = useSelector(selectModalSeller);
+    const modalComments = useSelector(selectModalComments);
     const [isChatFloating, setIsChatFloating] = useState(false);
 
     useEffect(() => {
@@ -69,6 +90,10 @@ export default function Layout(): JSX.Element {
 
             <Modal isOpen={modal} style={customStyles}>
                 <ModalPost />
+            </Modal>
+
+            <Modal isOpen={modalComments} style={customStylesComments}>
+                <ModalComments />
             </Modal>
         </>
     )
