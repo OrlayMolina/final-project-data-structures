@@ -14,7 +14,7 @@ const initialState: ISocialMediaSellersState = {
     allCategories: [],
     userLogged: false,
     sellerList: new DoubleList<Seller>(),
-    postList: new DoubleList<Post>()
+    postLists: new DoubleList<Post>()
 }
 
 const socialMediaSlice = createSlice({
@@ -46,7 +46,15 @@ const socialMediaSlice = createSlice({
             state.sellerList = action.payload;
         },
         setPostList: (state, action: PayloadAction<DoubleList<Post>>) => {
-            state.postList = action.payload;
+            state.postLists = action.payload;
+        },
+        addPosts: (state, action: PayloadAction<Post>) => {
+            const updatedPostList = new DoubleList<Post>();
+            if(state.postLists){
+                state.postLists.forEach(post => updatedPostList.putInFront(post));
+            }
+            updatedPostList.putInFront(action.payload);
+            state.postLists = updatedPostList;
         }
     }
 });
@@ -59,7 +67,8 @@ export const {
     setPostCategory,
     setAllCategories,
     setSellerList,
-    setPostList
+    setPostList,
+    addPosts
  } = socialMediaSlice.actions;
 
 export const selectStatus = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.status;
@@ -69,6 +78,6 @@ export const selectUserLogged = (state: { socialMedia: ISocialMediaSellersState 
 export const selectPostCategory =(state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.postCategory;
 export const selectAllCategories = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.allCategories;
 export const selectSellerList = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.sellerList;
-export const selectPostList = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.postList;
+export const selectPostLists = (state: { socialMedia: ISocialMediaSellersState }) => state.socialMedia.postLists;
 
 export default socialMediaSlice.reducer;

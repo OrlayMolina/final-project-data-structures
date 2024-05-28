@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Seller } from '../../classes.typescript/models/Sellers';
-import { selectSellerLogged } from '../../redux/features/social.media/social.media.slice';
+import { selectSellerLogged, selectSellerList } from '../../redux/features/social.media/social.media.slice';
+import { addRequestReceived, setSeller, selectSeller } from '../../redux/features/seller/seller.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Request } from '../../classes.typescript/models/Request';
 import { addRequestSent } from '../../redux/features/seller/seller.slice';

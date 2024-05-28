@@ -38,7 +38,7 @@ export class Seller extends Person {
     }
 
     public getPostList(): DoubleList<Post> {
-        return this.postList;
+        return this.postList || new DoubleList<Post>();
     }
 
     /**
@@ -50,7 +50,7 @@ export class Seller extends Person {
     }
 
     public getContactList(): DoubleList<Seller> {
-        return this.contactList;
+        return this.contactList || new DoubleList<Seller>();
     }
 
     /**
@@ -62,19 +62,15 @@ export class Seller extends Person {
     }
 
     public getChatList(): DoubleList<Chat> {
-        return this.chatList;
+        return this.chatList || new DoubleList<Chat>();
     }
 
     /**
      * Sets the list of chats associated with this seller.
      * @param chatList The list of chats to set.
      */
-    public setChatList(chatList: DoubleList<Chat>): void {
-        this.chatList = chatList;
-    }
-
     public getRequestReceivedList(): DoubleList<Request> {
-        return this.requestReceivedList;
+        return this.requestReceivedList || new DoubleList<Request>();
     }
 
     /**
@@ -86,7 +82,7 @@ export class Seller extends Person {
     }
 
     public getRequestSentList(): DoubleList<Request> {
-        return this.requestSentList;
+        return this.requestSentList || new DoubleList<Request>();
     }
 
     /**

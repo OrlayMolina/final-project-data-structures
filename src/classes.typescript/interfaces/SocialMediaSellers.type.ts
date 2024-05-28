@@ -6,6 +6,6 @@ import { DoubleList } from "../own.structures/linked.lists/list/DoubleList"
  */
 export interface ISocialMediaSellers{
     sellerList: DoubleList<Seller>,
-    postList: DoubleList<Post>,
+    postLists: DoubleList<Post>,
     userLogged: boolean
 }
