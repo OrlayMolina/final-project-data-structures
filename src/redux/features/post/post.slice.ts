@@ -15,7 +15,7 @@ const initialState: PostsState = {
     price: 0,
     image: '',
     category: '',
-    postState: PostState.VOID,
+    postState: PostState.PUBLISHED,
     comments: new DoubleList<Comment>(),
     likes: new DoubleList<Like>()
 }

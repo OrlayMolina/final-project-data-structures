@@ -29,10 +29,10 @@ export default function RequestSent() {
         
             </div>
 
-            <div className="flex flex-col mx-6 md:mx-16 lg:mx-32 mb-12">
+            <div className="flex flex-col mx-6 md:mx-12 lg:mx-16 mb-12">
                 <h1 className="text-4xl font-black mt-8 mb-5 text-center">Requests Sent</h1>
 
-                <div className="bg-white shadow-xl rounded-xl mt-8 px-5">
+                <div className="bg-white shadow-xl rounded-xl mt-8 px-2">
                     <div className='grid gap-y-24 gap-x-6 grid-cols-1 md:grid-cols-2'>
                         {requests.map((request: Request) => (
                             <Asking key={request.getDate()} request={request} />
