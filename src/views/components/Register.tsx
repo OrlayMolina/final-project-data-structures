@@ -35,7 +35,7 @@ function Register() {
       password_confirmation: passwordConfirmationRef?.current?.value,
     };
 
-    register(datos, setErrors, setSuccess);
+    register(datos);
   };
 
   return (

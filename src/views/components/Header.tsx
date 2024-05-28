@@ -1,5 +1,6 @@
 import { selectUserLogged, setSellerLogged, setUserLogged, setLoginErrors } from "../../redux/features/social.media/social.media.slice";
 import { useSelector, useDispatch } from "react-redux";
+import { useAuth } from "../../hooks/useAuth";
 import ShippingInfo from "./ShippingInfo";
 import SearchBar from './SearchBar';
 import { Disclosure } from '@headlessui/react';

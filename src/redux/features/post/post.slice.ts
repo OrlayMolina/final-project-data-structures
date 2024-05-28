@@ -15,6 +15,7 @@ const initialState: PostsState = {
     price: 0,
     image: '',
     category: '',
+    modalComments: false,
     postState: PostState.PUBLISHED,
     comments: new DoubleList<Comment>(),
     likes: new DoubleList<Like>()
@@ -37,6 +38,9 @@ const postSlice = createSlice({
             state.comments = action.payload.comments;
             state.likes = action.payload.likes;
         },
+        setModalComments: (state, action: PayloadAction<boolean>) => {
+            state.modalComments = action.payload;
+        },
         addComment: (state, action: PayloadAction<DoubleList<Comment>>) => {
             state.comments = action.payload;
         },
@@ -47,10 +51,12 @@ const postSlice = createSlice({
 });
 
 // Extract action creators and reducer from the post slice
-export const { setCurrentPost, setPost, addComment, addLike } = postSlice.actions;
+export const { setCurrentPost, setPost, addComment, setModalComments, addLike } = postSlice.actions;
 
 // Selector to get the current post from the state
-export const selectCurrentPost = (state: { post: PostsState }) => state.post.currentPost;
+export const selectCurrentPost = ( state: { post: PostsState }) => state.post.currentPost;
+export const selectModalComments = ( state: { post: PostsState }) => state.post.modalComments;
+export const selectComments = (state: { post: PostsState }) => state.post.comments;
 
 // Export the reducer function for configuring the Redux store
 export default postSlice.reducer;

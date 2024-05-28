@@ -1,4 +1,5 @@
-import { selectSellerList, selectPostLists } from "../../redux/features/social.media/social.media.slice";
+import { selectSellerList, selectPostLists} from "../../redux/features/social.media/social.media.slice";
+import { selectComments } from "../../redux/features/post/post.slice";
 import { selectPostList } from "../../redux/features/seller/seller.slice";
 import { useSelector } from "react-redux";
 
@@ -7,6 +8,7 @@ export default function Stats() {
     const sellerList = useSelector(selectSellerList);
     const postList = useSelector(selectPostList);
     const postLists = useSelector(selectPostLists);
+    const comments = useSelector(selectComments);
 
     let totalUsers = 0;
     sellerList.forEach((seller) => {
@@ -26,7 +28,13 @@ export default function Stats() {
             totalPosts++;
         });
     }
-    const totalComments = 300;
+    
+    let totalComments = 0;
+    if(comments){
+        comments.forEach((comment) => {
+            totalComments++;
+        });
+    }
 
     return (
         <>

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { PostState } from '../../classes.typescript/enum/PostState';
 import { DoubleList } from '../../classes.typescript/own.structures/linked.lists/list/DoubleList';
 import { addPost } from '../../redux/features/seller/seller.slice';
+import MessageConfirmation from './MessageConfirmation';
 import { addPosts } from '../../redux/features/social.media/social.media.slice';
 import { Post } from '../../classes.typescript/models/Post';
 import { Like } from '../../classes.typescript/models/Like';
@@ -16,6 +17,7 @@ const FormPost = () => {
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
     const [postState, setPostState] = useState(PostState.DRAFT);
+    const [showConfirmation, setShowConfirmation] = useState(false);
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -33,11 +35,18 @@ const FormPost = () => {
 
         dispatch(addPost(newPost));
         dispatch(addPosts(newPost));
+
+        setShowConfirmation(true);
+        setTimeout(() => setShowConfirmation(false), 2000);
     };
 
     return (
         <div className="flex flex-col mx-6 md:mx-16 lg:mx-32 mb-12">
             <h1 className="text-4xl font-black mt-8 mb-5 text-center">Create Post</h1>
+            <div className="flex flex-col mx-6 md:mx-16 lg:mx-32 mb-12">
+                {showConfirmation && <MessageConfirmation>Post created successfully</MessageConfirmation>}
+                {/* rest of your code */}
+            </div>
             <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded-xl p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-6">
                     <div className="mb-4">

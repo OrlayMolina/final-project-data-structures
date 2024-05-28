@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Seller } from '../../classes.typescript/models/Sellers';
-import { selectSellerLogged, selectSellerList } from '../../redux/features/social.media/social.media.slice';
-import { addRequestReceived, setSeller, selectSeller } from '../../redux/features/seller/seller.slice';
+import { selectSellerLogged } from '../../redux/features/social.media/social.media.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Request } from '../../classes.typescript/models/Request';
 import { addRequestSent } from '../../redux/features/seller/seller.slice';
@@ -39,9 +38,7 @@ export default function Suggestions({ contact }: {contact: Seller | null}):JSX.E
         <>
             {showAlert && <MessageConfirmation>Request sent successfully</MessageConfirmation>} 
             <div className='grid gap-y-24 gap-x-6 grid-cols-1 md:grid-cols-2'>
-
-                
-                
+        
                 <form 
                     onClick={handleSummit}
                     className="flex flex-row items-center mt-10 mx-3 md:mx-4 lg:mx-6" 

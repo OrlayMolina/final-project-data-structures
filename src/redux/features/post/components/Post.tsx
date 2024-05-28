@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addLike } from '../post.slice';
 import { selectUserLogged, selectSellerLogged } from '../../social.media/social.media.slice';
+import { selectModalComments, setModalComments } from '../post.slice';
 import { setCurrentPost } from '../post.slice';
 import { selectModalSeller, setModalSeller } from '../../seller/seller.slice';
 import { IPost } from '../../../../classes.typescript/interfaces/Post.type';
@@ -15,6 +16,7 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
     const userLogged = useSelector(selectUserLogged);
     const sellerLogged = useSelector(selectSellerLogged);
     const modalSeller = useSelector(selectModalSeller);
+    const modalComments = useSelector(selectModalComments);
     const navigate = useNavigate();
 
     if (!post) {
@@ -59,6 +61,11 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
         dispatch(setModalSeller(newState));
     };
 
+    const toggleModalComments = () => {
+        const newState = !modalComments;
+        dispatch(setModalComments(newState));
+    };
+
     return (
         <div className="border border-slate-500 w-80 p-6 shadow-lg rounded-xl bg-orange-100" onMouseEnter={handleSetPost}>
             <div className="flex flex-col items-start">
@@ -93,6 +100,7 @@ export default function Post({ post }: {post: IPost | null}):JSX.Element {
                         strokeWidth="1.5" 
                         stroke="currentColor" 
                         className="w-6 h-6 mx-1 cursor-pointer"
+                        onClick={toggleModalComments}
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
                     </svg>

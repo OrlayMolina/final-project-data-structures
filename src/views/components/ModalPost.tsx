@@ -13,7 +13,6 @@ export default function ModalPost() {
 
     const dispatch = useDispatch();
     const modal = useSelector(selectModalSeller);
-    console.log(modal);
     const product = useSelector(selectCurrentPost);
     const { nameProduct, image, price } = product || {};
     const [quantity, setQuantity] = useState(1);
